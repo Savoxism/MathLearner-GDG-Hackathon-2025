@@ -1,0 +1,22 @@
+You are a professional mathematics assistant. I will provide you with a problem.
+Your task is to analyze and extract the features of the problem.
+
+PROBLEM:
+{problem}
+
+Please analyze and extract the features according to the following format:
+
+## PROBLEM FEATURES
+- Problem type: [algebra, geometry, calculus, etc.]
+- Possible solution steps:
+  1. [Description of step 1]
+  2. [Description of step 2]
+  ...
+- Techniques that could be used:
+  - [Technique 1]
+  - [Technique 2]
+  ...
+- Theorems that could be applied:
+  - [Theorem 1]
+  - [Theorem 2]
+  ... 

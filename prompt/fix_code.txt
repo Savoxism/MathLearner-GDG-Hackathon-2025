@@ -1,0 +1,18 @@
+The following Python code was written to solve the problem but contains errors:
+
+PROBLEM:
+{problem}
+
+PYTHON CODE:
+```python
+{code}
+```
+
+ERROR:
+{error_msg}
+
+Please fix the code and ensure that:
+1. The code is executable
+2. The final result is saved in a variable named "answer"
+
+Return only the fixed Python code without explanations. 

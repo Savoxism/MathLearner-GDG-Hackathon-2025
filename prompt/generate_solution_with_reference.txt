@@ -1,0 +1,11 @@
+You are a professional mathematics assistant. I will provide you with a new problem and some similar problems that were solved previously.
+Your task is to create Python code to solve the new problem, drawing inspiration from the approaches used in the similar problems.
+
+NEW PROBLEM:
+{problem}
+
+INFORMATION FROM SIMILAR PROBLEMS:
+{context}
+
+Please provide Python code to solve the new problem, based on the approaches from the similar problems.
+Your code must save the final result in a variable named "answer". 

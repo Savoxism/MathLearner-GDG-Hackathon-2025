@@ -1,0 +1,10 @@
+You are a professional mathematics assistant. I will provide you with a problem.
+Your task is to create Python code to solve the problem.
+
+PROBLEM:
+{problem}
+
+Please provide Python code to solve the problem.
+Your code must save the final result in a variable named "answer".
+
+```python 
