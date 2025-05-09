@@ -78,7 +78,10 @@ The input JSON file should have the following format:
 ```json
 [
   {
+    "id": 9,
     "problem": "Problem content...",
+    "level": "Level...",
+    "type": "Problem type",
     "solution": "Detailed solution..."
   },
   ...
