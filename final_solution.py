@@ -1,34 +1,39 @@
-import sympy as sp
+def calculate_large_posters_profit(sold, selling_price, cost_price):
+    # Calculate the profit per large poster
+    profit_per_large = selling_price - cost_price
+    # Calculate total profit from large posters
+    total_profit_large = sold * profit_per_large
+    return total_profit_large
 
-def complex_distance(z1, z2):
-    # Extract real and imaginary parts
-    x1, y1 = sp.re(z1), sp.im(z1)
-    x2, y2 = sp.re(z2), sp.im(z2)
-    
-    # Calculate differences
-    dx = x2 - x1
-    dy = y2 - y1
-    
-    # Square the differences and sum them
-    sum_of_squares = dx**2 + dy**2
-    
-    # Take the square root of the sum
-    distance = sp.sqrt(sum_of_squares)
-    
-    return distance
+def calculate_small_posters_profit(sold, selling_price, cost_price):
+    # Calculate the profit per small poster
+    profit_per_small = selling_price - cost_price
+    # Calculate total profit from small posters
+    total_profit_small = sold * profit_per_small
+    return total_profit_small
 
-# Joe's and Gracie's points
-joe_point = 1 + 2*sp.I
-gracie_point = -1 + sp.I
-
-# Calculate the distance between the points
-distance = complex_distance(joe_point, gracie_point)
+def calculate_total_profit(large_posters_per_day, small_posters_per_day, days):
+    # Selling prices and costs
+    large_selling_price = 10
+    large_cost_price = 5
+    small_selling_price = 6
+    small_cost_price = 3
+    
+    # Calculate profits from large and small posters
+    profit_large = calculate_large_posters_profit(large_posters_per_day * days, large_selling_price, large_cost_price)
+    profit_small = calculate_small_posters_profit(small_posters_per_day * days, small_selling_price, small_cost_price)
+    
+    # Total profit
+    total_profit = profit_large + profit_small
+    return total_profit
 
 def main():
-    joe_point = 1 + 2*sp.I
-    gracie_point = -1 + sp.I
-    distance = complex_distance(joe_point, gracie_point)
-    return distance
+    # Given data
+    large_posters_per_day = 2
+    small_posters_per_day = 3  # 5 - 2
+    days = 5
+    
+    total_profit = calculate_total_profit(large_posters_per_day, small_posters_per_day, days)
+    print(total_profit)
 
-if __name__ == "__main__":
-    print(main())
+main()
