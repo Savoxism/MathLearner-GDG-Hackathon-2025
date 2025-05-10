@@ -8,7 +8,7 @@ import datetime
 
 from utils import extract_python_code, run_python_code, check_solutions_match, save_solution
 
-load_dotenv()
+_ = load_dotenv()
 
 class AIModelClient:
     def __init__(self, base_url: str, api_key: str, model_name: str):
@@ -126,7 +126,6 @@ class AIModelClient:
             result = json.loads(result_text.strip())
             return result
         except:
-            # If parsing fails, return a simplified dict
             return {
                 "general_type": "unknown",
                 "specific_topics": [],

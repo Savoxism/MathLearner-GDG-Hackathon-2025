@@ -1,87 +1,17 @@
 [
   {
-    "idx": 18,
-    "question": "A 26-mile circular marathon has x checkpoints inside it. The first is one mile from the start line, and the last checkpoint is one mile from the finish line. The checkpoints have equal spacing between them. How many miles apart are each of the consecutive checkpoints between the start-finish line?\nIf we know the answer to the above question is 6, what is the value of unknown variable x?",
-    "answer": "4",
-    "error": "Expected 4, but got 3",
-    "timestamp": "2025-05-09T22:57:56.526279"
-  },
-  {
-    "idx": 25,
-    "question": "Frank is making hamburgers and he wants to sell them to make $50.  Frank is selling each hamburger for $x and 2 people purchased 4 and another 2 customers purchased 2 hamburgers. Frank needs to sell 4 more hamburgers to make $50. What is the value of unknown variable x?",
-    "answer": "5",
-    "error": "Expected 5, but got 2.5",
-    "timestamp": "2025-05-09T22:59:02.900600"
-  },
-  {
-    "idx": 92,
-    "question": "A plumber bought 10 meters of copper and 5 more meters of plastic pipe. If each meter cost $4, how much did the plumber spent on the copper and plastic pipe?",
-    "answer": "100",
-    "error": "Expected 100, but got 60",
-    "timestamp": "2025-05-09T23:07:43.800414"
-  },
-  {
-    "idx": 103,
-    "question": "After Omar buys a 12-ounce cup of coffee in the morning and drinks one-quarter of it on the way to work, then another half when he arrives at his office, he forgets about it until later when it is cold. At that point, he only drinks 1 ounce of the remaining amount. How many ounces of coffee will be left in the cup after all of this?",
-    "answer": "2",
-    "error": "Expected 2, but got 3.5",
-    "timestamp": "2025-05-09T23:09:29.289036"
-  },
-  {
-    "idx": 106,
-    "question": "If there are 300 cars in the parking lot and 75% of them have valid tickets, and 1/5th of that number have permanent parking passes, how many cars attempted to park in the lot without paying?",
-    "answer": "30",
-    "error": "Expected 30, but got 75",
-    "timestamp": "2025-05-09T23:10:07.233397"
-  },
-  {
-    "idx": 109,
-    "question": "Gwendolyn can read 200 sentences of a book in x hour. She just brought a book from the library, having 20 paragraphs per page. What's the total time Gwendolyn will take to read the book if each paragraph has 10 sentences and the book has 50 pages?\nIf we know the answer to the above question is 50, what is the value of unknown variable x?",
-    "answer": "1",
-    "error": "Expected 1, but got Value of x: 200.0",
-    "timestamp": "2025-05-09T23:11:28.018601"
-  },
-  {
     "idx": 114,
     "question": "The quadratic equation $x^2+mx+n=0$ has roots that are twice those of $x^2+px+m=0,$ and none of $m,$ $n,$ and $p$ is zero. What is the value of $n/p?$",
     "answer": "8",
-    "error": "Expected 8, but got -4",
-    "timestamp": "2025-05-09T23:13:14.847871"
-  },
-  {
-    "idx": 131,
-    "question": "When the square of three times a positive integer is decreased by the integer, the result is $2010$. What is the integer?",
-    "answer": "15",
-    "error": "SyntaxError: Non-UTF-8 code starting with '\\xb1' in file D:\\Github\\MathLearner-GDG-Hackathon-2025\\temp_solution.py on line 10, but no encoding declared; see https://peps.python.org/pep-0263/ for details\n",
-    "timestamp": "2025-05-09T23:16:17.618089"
-  },
-  {
-    "idx": 200,
-    "question": "Shelby had $20 to take to the book fair. She bought one book for $x and another for $4. She decided to buy as many $4 posters as she could with the money she had left. How many posters can she buy?\nIf we know the answer to the above question is 2, what is the value of unknown variable x?",
-    "answer": "8",
-    "error": "Expected 8, but got 4\n3",
-    "timestamp": "2025-05-09T23:25:02.839873"
+    "error": "Expected 8, but got -1.0",
+    "timestamp": "2025-05-10T11:32:37.477151"
   },
   {
     "idx": 212,
     "question": "The circumference of a particular circle is 18 cm. In square centimeters, what is the area of the circle? Express your answer as a common fraction in terms of $\\pi$.",
     "answer": "\\frac{81}{\\pi}",
-    "error": "'charmap' codec can't encode character '\\u03c0' in position 550: character maps to <undefined>",
-    "timestamp": "2025-05-09T23:26:54.989426"
-  },
-  {
-    "idx": 213,
-    "question": "The fifth term of a geometric sequence of positive numbers is $11$ and the eleventh term is $5$. What is the eighth term of the sequence? Express your answer in simplest radical form.  [asy]\nsize(150); defaultpen(linewidth(2));\nreal loc = 0;\nfor(int i = 0; i < 11; ++i) {\n\nif(i == 4)\n\nlabel(\"$\\mathbf{\\mathit{11}}$\",(loc,0),(0.8,1.2),fontsize(14));\n\nif(i == 10)\n\nlabel(\"$\\mathbf{\\mathit{5}}$\",(loc,0),(1.2,1.2),fontsize(14));\n\nfill(box((loc,0),(loc+1,0.15)));\n\nloc += 4/3;\n}\n[/asy]",
-    "answer": "\\sqrt{55}",
-    "error": "Expected \\sqrt{55}, but got 0.203278907045435",
-    "timestamp": "2025-05-09T23:27:20.854456"
-  },
-  {
-    "idx": 220,
-    "question": "In four years, Annika will be x times as old as Hans. If Hans is now 8 years old, how old is Annika now?\nIf we know the answer to the above question is 32, what is the value of unknown variable x?",
-    "answer": "3",
-    "error": "Expected 3, but got 28\n2.33",
-    "timestamp": "2025-05-09T23:28:33.420183"
+    "error": "Expected \\frac{81}{\\pi}, but got 2/1\u03c0",
+    "timestamp": "2025-05-10T11:33:11.396395"
   },
   {
     "idx": 243,
@@ -89,69 +19,6 @@
     "answer": "58",
     "error": "Expected 58, but got None",
     "timestamp": "2025-05-09T23:31:49.313800"
-  },
-  {
-    "idx": 244,
-    "question": "Janice bought x juices for $10 in total and two sandwiches for $6 in total. How much would she need to pay, She would only buy 5 if she would only buy one sandwich and one juice. What is the value of unknown variable x?",
-    "answer": "5",
-    "error": "Expected 5, but got 4\n16\n16",
-    "timestamp": "2025-05-09T23:32:13.950635"
-  },
-  {
-    "idx": 265,
-    "question": "Jar A initially contains four red buttons and eight blue buttons. Carla removes an equal number of red buttons and blue buttons from Jar A and places them in Jar B, leaving Jar A with 2/3 of its original number of buttons. If Carla randomly selects one button from Jar A and one button from Jar B, what is the probability that both buttons selected will be red? Express your answer as a common fraction.",
-    "answer": "\\frac{1}{8}",
-    "error": "Traceback (most recent call last):\n  File \"D:\\Github\\MathLearner-GDG-Hackathon-2025\\temp_solution.py\", line 44, in <module>\n    main()\n  File \"D:\\Github\\MathLearner-GDG-Hackathon-2025\\temp_solution.py\", line 40, in main\n    final_probability = probability_both_red(red_a_after, blue_a_after, red_b, blue_b)\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Github\\MathLearner-GDG-Hackathon-2025\\temp_solution.py\", line 25, in probability_both_red\n    prob_red_a = Fraction(red_a, total_a)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Admin\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\fractions.py\", line 277, in __new__\n    raise TypeError(\"both arguments should be \"\nTypeError: both arguments should be Rational instances\n",
-    "timestamp": "2025-05-09T23:35:23.260881"
-  },
-  {
-    "idx": 296,
-    "question": "Steven's teacher sends the class an assignment to collect x different fruit seeds. Apples average 6 seeds, pears average 2 seeds, and grapes average 3 seeds. Steven has set aside 4 apples, 3 pears, and 9 grapes to extract their seeds. How many more seeds does he need to fulfill his assignment?\nIf we know the answer to the above question is 3, what is the value of unknown variable x?",
-    "answer": "60",
-    "error": "Expected 60, but got 6",
-    "timestamp": "2025-05-09T23:40:19.674087"
-  },
-  {
-    "idx": 364,
-    "question": "Calculate $\\sqrt{30p} \\cdot \\sqrt{5p} \\cdot \\sqrt{6p}$ . Express your answer in simplest radical form in terms of $p$.",
-    "answer": "30p\\sqrt{p}",
-    "error": "Traceback (most recent call last):\n  File \"D:\\Github\\MathLearner-GDG-Hackathon-2025\\temp_solution.py\", line 21, in <module>\n    final_answer = calculate_final_expression()\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Github\\MathLearner-GDG-Hackathon-2025\\temp_solution.py\", line 17, in calculate_final_expression\n    numeric_part, variable_part = simplify_expression()\n                                  ^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Github\\MathLearner-GDG-Hackathon-2025\\temp_solution.py\", line 11, in simplify_expression\n    variable_part = math.sqrt('p^3')  # We represent 'p' as an object for demonstration\n                    ^^^^^^^^^^^^^^^^\nTypeError: must be real number, not str\n",
-    "timestamp": "2025-05-09T23:52:19.598512"
-  },
-  {
-    "idx": 391,
-    "question": "Find all values of $a$ so that the lines specified by\n\\[\\begin{pmatrix} 1 \\\\ 2 \\\\ a \\end{pmatrix} + t \\begin{pmatrix} X \\\\ 3 \\\\ 4 \\end{pmatrix}\\]and\n\\[\\begin{pmatrix} 4 \\\\ 1 \\\\ 0 \\end{pmatrix} + u \\begin{pmatrix} 5 \\\\ 2 \\\\ 1 \\end{pmatrix}\\]are skew.\nIf we know the answer to the above question is (-\\infty,3)\\cup(3,\\infty), what is the value of unknown variable X?",
-    "answer": "2",
-    "error": "'charmap' codec can't encode character '\\u222a' in position 1812: character maps to <undefined>",
-    "timestamp": "2025-05-09T23:56:13.443230"
-  },
-  {
-    "idx": 392,
-    "question": "For a finite sequence $A=(a_1,a_2,\\dots,a_n)$ of numbers, the Cesaro sum of $A$ is defined to be\n\\[\\frac{S_1+\\cdots+S_n}{n},\\]where $S_k=a_1+\\cdots+a_k$ and $1\\leq k\\leq n$.\n\nIf the Cesaro sum of the 99-term sequence $(a_1,\\dots,a_{99})$ is X,  what is the Cesaro sum of the 100-term sequence $(1,a_1,\\dots,a_{99})$?\nIf we know the answer to the above question is 991, what is the value of unknown variable X?",
-    "answer": "1000",
-    "error": "Expected 1000, but got 1001",
-    "timestamp": "2025-05-09T23:56:41.584024"
-  },
-  {
-    "idx": 400,
-    "question": "Sunnyvale School was having a picnic. They wanted to make fruit punch. They had x liters of orange punch. They had twice as much cherry punch as orange punch and 1.5 liters less of apple juice than cherry punch. When they combined all of the fruit juices together, how many liters of fruit punch did they have?\nIf we know the answer to the above question is 21, what is the value of unknown variable x?",
-    "answer": "4.5",
-    "error": "Expected 4.5, but got None",
-    "timestamp": "2025-05-09T23:58:01.863176"
-  },
-  {
-    "idx": 427,
-    "question": "Paige bought some new stickers and wanted to share them with 3 of her friends. She decided to share a sheet of 100 space stickers and a sheet of 50 cat stickers equally among her 3 friends. How many stickers will she have left?",
-    "answer": "3",
-    "error": "Expected 3, but got 0",
-    "timestamp": "2025-05-10T00:01:21.363331"
-  },
-  {
-    "idx": 432,
-    "question": "Brian loves watching animal videos online.  He watches a 4-minute video of cats.  He then watches a video twice as long as the cat video involving dogs.  He finishes up his video watching for the day by watching a video on gorillas that's twice as long as the previous two videos combined.  How many minutes does Brian spend watching animal videos?",
-    "answer": "36",
-    "error": "Request timed out.",
-    "timestamp": "2025-05-10T00:02:28.359024"
   },
   {
     "idx": 436,
@@ -168,25 +35,11 @@
     "timestamp": "2025-05-10T00:04:06.180162"
   },
   {
-    "idx": 450,
-    "question": "During a school meeting, 300 students and x teachers are seated but 25 students are standing. 355 attended the school meeting. What is the value of unknown variable x?",
-    "answer": "30",
-    "error": "Expected 30, but got 80",
-    "timestamp": "2025-05-10T00:05:19.461093"
-  },
-  {
     "idx": 457,
     "question": "Jo adds up all the positive integers from 1 to X. Kate does a similar thing with the first 50 positive integers; however, she first rounds every integer to its nearest multiple of 10 (rounding 5s up) and then adds the 50 values. The positive difference between Jo's sum and Kate's sum is 25. What is the value of unknown variable X?",
     "answer": "50",
     "error": "Expected 50, but got None",
     "timestamp": "2025-05-10T00:07:06.252162"
-  },
-  {
-    "idx": 471,
-    "question": "Mary had x lambs and 2 of the lambs had 2 babies each.  She traded 3 lambs for one goat.  One morning, she woke up and found an extra 7 lambs in the field.  How many lambs does Mary have?\nIf we know the answer to the above question is 14, what is the value of unknown variable x?",
-    "answer": "6",
-    "error": "Expected 6, but got 14\n6",
-    "timestamp": "2025-05-10T00:09:22.066043"
   },
   {
     "idx": 476,
@@ -202,11 +55,4 @@
     "error": "Expected 1, but got Ordered pair (a, b): (-3.00000000000000, 0.0714285714285714)\nValue of unknown variable X: 1.00000000000000\nAdjusted Ordered pair (must sum to 14): (5.46428571428571, 8.53571428571428)",
     "timestamp": "2025-05-10T00:11:48.433069"
   },
-  {
-    "idx": 484,
-    "question": "What is the largest number, all of whose digits are X or 2, The number whose digits add up to 11 is 32222. What is the value of unknown variable X?",
-    "answer": "3",
-    "error": "Traceback (most recent call last):\n  File \"D:\\Github\\MathLearner-GDG-Hackathon-2025\\temp_solution.py\", line 36, in <module>\n    x_value, final_largest_number = find_X_and_largest_number()\n                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Github\\MathLearner-GDG-Hackathon-2025\\temp_solution.py\", line 26, in find_X_and_largest_number\n    count_x, count_y = find_number_of_terms(total_sum, digit_x, digit_y)\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Github\\MathLearner-GDG-Hackathon-2025\\temp_solution.py\", line 5, in find_number_of_terms\n    if remaining_sum >= 0 and remaining_sum % digit_x == 0:\n                              ~~~~~~~~~~~~~~^~~~~~~~~\nZeroDivisionError: integer modulo by zero\n",
-    "timestamp": "2025-05-10T00:12:31.598898"
-  }
 ]

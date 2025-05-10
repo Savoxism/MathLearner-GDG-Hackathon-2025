@@ -1,0 +1,53 @@
+{
+  "question": "Suzanne wants to raise money for charity by running a 5-kilometer race. Her parents have pledged to donate $x for her first kilometer and double the donation for every successive kilometer. If Suzanne finishes the race, how much money will her parents donate?\nIf we know the answer to the above question is 310, what is the value of unknown variable x?",
+  "features": {
+    "general_type": "algebra",
+    "specific_topics": [
+      "exponential growth",
+      "arithmetic series"
+    ],
+    "operations": [
+      "addition",
+      "multiplication",
+      "substitution"
+    ],
+    "theorems": [
+      "geometric series sum formula"
+    ],
+    "difficulty_level": "medium"
+  },
+  "similar_problems": [
+    {
+      "id": "383",
+      "similarity": 0.7341239750385284,
+      "question": "On Monday, Jasmine had 2 paperclips. The number of paperclips she had on Tuesday was 6, and each day after that, the number of paperclips tripled. On which day of the week did she first have more than 100 paperclips?",
+      "solution": "def day_of_week_paperclips():\n    # Initialize variables\n    paperclips = [2, 6]  # Monday and Tuesday\n    days = [\"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\", \"Saturday\", \"Sunday\"]\n\n    # Calculate the number of paperclips for the rest of the week\n    for day in range(2, 7):\n        new_count = paperclips[day - 1] * 3\n        paperclips.append(new_count)\n\n    # Find the first day with more than 100 paperclips\n    for i in range(len(paperclips)):\n        if paperclips[i] > 100:\n            return days[i]\n\nfinal_day = day_of_week_paperclips()\nprint(final_day)",
+      "general_type": "algebra",
+      "difficulty": "easy"
+    },
+    {
+      "id": "55",
+      "similarity": 0.645704448223114,
+      "question": "Evaluate the infinite geometric series: $$\\frac{1}{3}+\\frac{1}{6}+\\frac{1}{12}+\\frac{1}{24}+\\dots$$",
+      "solution": "def first_term():\n    return 1 / 3\n\ndef common_ratio():\n    return (1 / 6) / (1 / 3)\n\ndef sum_of_infinite_geometric_series(a, r):\n    return a / (1 - r)\n\n# Calculate\na = first_term()\nr = common_ratio()\nresult = sum_of_infinite_geometric_series(a, r)\n\nprint(result)",
+      "general_type": "algebra",
+      "difficulty": "easy"
+    },
+    {
+      "id": "65",
+      "similarity": 0.6126104593276978,
+      "question": "A papaya tree will grow x feet in the first year.  In the second year, it will grow 50% more than the first year.  In the third year, the tree will grow 50% more than in the second year.  In the fourth year, it will grow twice as much as the third year.  In the fifth year, it will grow half as much as the fourth year.  When the tree is 5 years old, The tree is 23 tall. What is the value of unknown variable x?",
+      "solution": "def growth_first_year(x):\n    return x\n\ndef growth_second_year(x):\n    return growth_first_year(x) * 1.5\n\ndef growth_third_year(x):\n    return growth_second_year(x) * 1.5\n\ndef growth_fourth_year(x):\n    return growth_third_year(x) * 2\n\ndef growth_fifth_year(x):\n    return growth_fourth_year(x) * 0.5\n\ndef total_growth(x):\n    return (growth_first_year(x) +\n            growth_second_year(x) +\n            growth_third_year(x) +\n            growth_fourth_year(x) +\n            growth_fifth_year(x))\n\ndef find_x(total_height):\n    for x in range(1, total_height + 1):\n        if total_growth(x) == total_height:\n            return x\n    return None\n\ntotal_height = 23\nx_value = find_x(total_height)\nprint(x_value)",
+      "general_type": "algebra",
+      "difficulty": "medium"
+    }
+  ],
+  "solution_code": "def donation_first_km(x):\n    return x\n\ndef donation_second_km(x):\n    return donation_first_km(x) * 2\n\ndef donation_third_km(x):\n    return donation_second_km(x) * 2\n\ndef donation_fourth_km(x):\n    return donation_third_km(x) * 2\n\ndef donation_fifth_km(x):\n    return donation_fourth_km(x) * 2\n\ndef total_donation(x):\n    return (donation_first_km(x) +\n            donation_second_km(x) +\n            donation_third_km(x) +\n            donation_fourth_km(x) +\n            donation_fifth_km(x))\n\ndef find_x(total_amount):\n    for x in range(1, total_amount + 1):\n        if total_donation(x) == total_amount:\n            return x\n    return None\n\ntotal_amount = 310\nx_value = find_x(total_amount)\nprint(x_value)",
+  "output": "10",
+  "success": true,
+  "verification": {
+    "correct": true,
+    "answer": "10",
+    "evaluation": "Kết quả chính xác."
+  }
+}

@@ -1,0 +1,652 @@
+   print(f\"The minimum number of pizzas John needs to deliver: {int(min_deliveries) + (1 if min_deliveries % 1 > 0 else 0)}\")  # Round up\n\nmain()",
+    "features": {
+      "general_type": "algebra",
+      "specific_topics": [
+        "basic arithmetic",
+        "linear equations"
+      ],
+      "operations": [
+        "addition",
+        "subtraction",
+        "division",
+        "ceiling function"
+      ],
+      "theorems": [
+        "profit calculation",
+        "cost-recovery analysis"
+      ],
+      "difficulty_level": "easy"
+    }
+  },
+  {
+    "idx": 256,
+    "question": "If Tristan studies for 4 hours on Monday and twice that amount on Tuesday, and then studies for 3 hours each on Wednesday, Thursday, and Friday, and wants to study a total of 25 hours over the week, dividing the remaining study time evenly between Saturday and Sunday, how many hours does Tristan spend studying on Saturday?",
+    "answer": "2",
+    "modified_solution": "def study_hours_monday():\n    return 4\n\ndef study_hours_tuesday(monday_hours):\n    return 2 * monday_hours\n\ndef study_hours_weekdays():\n    return 3 * 3  # Wednesday, Thursday, and Friday\n\ndef total_study_hours(weekdays_hours, tuesday_hours, monday_hours):\n    return monday_hours + tuesday_hours + weekdays_hours\n\ndef remaining_study_time(total_hours, actual_hours):\n    return total_hours - actual_hours\n\ndef study_hours_weekend(remaining_hours):\n    return remaining_hours / 2  # Dividing equally between Saturday and Sunday\n\ndef main():\n    total_hours = 25\n    monday_hours = study_hours_monday()\n    tuesday_hours = study_hours_tuesday(monday_hours)\n    weekdays_hours = study_hours_weekdays()\n    \n    actual_hours = total_study_hours(weekdays_hours, tuesday_hours, monday_hours)\n    remaining_hours = remaining_study_time(total_hours, actual_hours)\n    saturday_hours = study_hours_weekend(remaining_hours)\n    \n    print(saturday_hours)\n\nmain()",
+    "features": {
+      "general_type": "algebra",
+      "specific_topics": [
+        "linear equations",
+        "time allocation",
+        "basic arithmetic"
+      ],
+      "operations": [
+        "addition",
+        "multiplication",
+        "subtraction",
+        "division"
+      ],
+      "theorems": [
+        "Total hours = Study hours on Monday + Study hours on Tuesday + Study hours on Weekdays"
+      ],
+      "difficulty_level": "easy"
+    }
+  },
+  {
+    "idx": 257,
+    "question": "Hank gave his wife, Delphine, a box of 24 chocolates for Valentine's Day.  On the first day, Delphine ate 4 chocolates.  On the second day, she ate 3 less than twice as many chocolates as she ate the first day.  On the third day, she ate two less than the number she ate on the first day.  And on the fourth day, she ate one less than she ate the previous day.  On the fifth day, how many chocolates remained uneaten?",
+    "answer": "12",
+    "modified_solution": "def chocolates_eaten_day1():\n    return 4\n\ndef chocolates_eaten_day2(day1_chocolates):\n    return (2 * day1_chocolates) - 3\n\ndef chocolates_eaten_day3(day1_chocolates):\n    return day1_chocolates - 2\n\ndef chocolates_eaten_day4(day3_chocolates):\n    return day3_chocolates - 1\n\ndef total_chocolates_eaten():\n    day1 = chocolates_eaten_day1()\n    day2 = chocolates_eaten_day2(day1)\n    day3 = chocolates_eaten_day3(day1)\n    day4 = chocolates_eaten_day4(day3)\n    return day1 + day2 + day3 + day4\n\ndef chocolates_remaining(total_chocolates=24):\n    eaten = total_chocolates_eaten()\n    return total_chocolates - eaten\n\nif __name__ == \"__main__\":\n    remaining_chocolates = chocolates_remaining()\n    print(remaining_chocolates)",
+    "features": {
+      "general_type": "algebra",
+      "specific_topics": [
+        "linear equations",
+        "arithmetic operations"
+      ],
+      "operations": [
+        "addition",
+        "subtraction",
+        "multiplication"
+      ],
+      "theorems": [],
+      "difficulty_level": "easy"
+    }
+  },
+  {
+    "idx": 258,
+    "question": "Which two-digit positive integer is one more than a multiple of 2, 3, 4, 5, and 6?",
+    "answer": "61",
+    "modified_solution": "def is_multiple_of_all(n, divisors):\n    \"\"\"Check if n is a multiple of all numbers in the divisors list.\"\"\"\n    return all(n % divisor == 0 for divisor in divisors)\n\ndef find_two_digit_integer():\n    \"\"\"Find the two-digit integer that is one more than a multiple of 2, 3, 4, 5, and 6.\"\"\"\n    \n    # We want n to be one more than a multiple of 2, 3, 4, 5, and 6\n    # So n - 1 should be a multiple of the least common multiple (LCM) of these numbers\n    divisors = [2, 3, 4, 5, 6]\n    lcm = compute_lcm(divisors)\n    \n    # Check the range of two-digit integers\n    for n in range(10, 100):\n        if (n - 1) % lcm == 0:\n            return n\n\ndef compute_lcm(divisors):\n    \"\"\"Compute the least common multiple (LCM) of a list of numbers.\"\"\"\n    lcm = divisors[0]\n    for divisor in divisors[1:]:\n        lcm = (lcm * divisor) // gcd(lcm, divisor)\n    return lcm\n\ndef gcd(a, b):\n    \"\"\"Compute the greatest common divisor (GCD) of a and b.\"\"\"\n    while b:\n        a, b = b, a % b\n    return a\n\n# Find the required two-digit integer\nresult = find_two_digit_integer()\nprint(result)",
+    "features": {
+      "general_type": "Number Theory",
+      "specific_topics": [
+        "Multiples",
+        "Least Common Multiple (LCM)",
+        "Greatest Common Divisor (GCD)"
+      ],
+      "operations": [
+        "Modulo",
+        "Iteration",
+        "Multiplication",
+        "Division"
+      ],
+      "theorems": [
+        "Properties of LCM and GCD"
+      ],
+      "difficulty_level": "medium"
+    }
+  },
+  {
+    "idx": 259,
+    "question": "What is half of the absolute value of the difference of the squares of 18 and 16?",
+    "answer": "34",
+    "modified_solution": "def calculate_square(num):\n    return num ** 2\n\ndef calculate_difference(square1, square2):\n    return abs(square1 - square2)\n\ndef calculate_half_of_absolute_value(difference):\n    return difference / 2\n\ndef main():\n    number1 = 18\n    number2 = 16\n    \n    square1 = calculate_square(number1)\n    square2 = calculate_square(number2)\n    \n    difference = calculate_difference(square1, square2)\n    \n    result = calculate_half_of_absolute_value(difference)\n    \n    print(result)\n\nmain()",
+    "features": {
+      "general_type": "algebra",
+      "specific_topics": [
+        "absolute value",
+        "difference of squares"
+      ],
+      "operations": [
+        "squaring",
+        "absolute value calculation",
+        "subtraction",
+        "division"
+      ],
+      "theorems": [],
+      "difficulty_level": "easy"
+    }
+  },
+  {
+    "idx": 260,
+    "question": "Daniel buys a magazine costing $0.85 and a pencil costing $0.50. He pays with a coupon that gives him $0.35 off. How much does he spend?",
+    "answer": "1",
+    "modified_solution": "def calculate_magazine_cost():\n    return 0.85\n\ndef calculate_pencil_cost():\n    return 0.50\n\ndef calculate_discount():\n    return 0.35\n\ndef calculate_total_cost():\n    magazine_cost = calculate_magazine_cost()\n    pencil_cost = calculate_pencil_cost()\n    discount = calculate_discount()\n    \n    total_cost = magazine_cost + pencil_cost - discount\n    return total_cost\n\ndef main():\n    total_spent = calculate_total_cost()\n    final_amount = round(total_spent, 2)\n    print(final_amount)\n\nif __name__ == \"__main__\":\n    main()",
+    "features": {
+      "general_type": "Arithmetic",
+      "specific_topics": [
+        "Basic operations",
+        "Total cost calculation"
+      ],
+      "operations": [
+        "addition",
+        "subtraction"
+      ],
+      "theorems": [
+        "Simple cost formula: total cost = (cost of item 1 + cost of item 2) - discount"
+      ],
+      "difficulty_level": "easy"
+    }
+  },
+  {
+    "idx": 261,
+    "question": "Ivan rents a car for $\\$$25 a day and $\\$$0.20 a mile. If he rents it for 4 days and drives it 400 miles, how many dollars does he pay?",
+    "answer": "180",
+    "modified_solution": "def calculate_daily_rent(days_rented, daily_rate):\n    return days_rented * daily_rate\n\ndef calculate_mileage_cost(miles_driven, cost_per_mile):\n    return miles_driven * cost_per_mile\n\ndef total_cost(days_rented, daily_rate, miles_driven, cost_per_mile):\n    daily_cost = calculate_daily_rent(days_rented, daily_rate)\n    mileage_cost = calculate_mileage_cost(miles_driven, cost_per_mile)\n    return daily_cost + mileage_cost\n\ndays_rented = 4\ndaily_rate = 25\nmiles_driven = 400\ncost_per_mile = 0.20\n\ntotal_payment = total_cost(days_rented, daily_rate, miles_driven, cost_per_mile)\nprint(total_payment)",
+    "features": {
+      "general_type": "arithmetic",
+      "specific_topics": [
+        "cost calculation",
+        "unit rate"
+      ],
+      "operations": [
+        "multiplication",
+        "addition"
+      ],
+      "theorems": [
+        "cost = daily_rate * days_rented + cost_per_mile * miles_driven"
+      ],
+      "difficulty_level": "easy"
+    }
+  },
+  {
+    "idx": 262,
+    "question": "Jenny brought in 40 peanut butter cookies and 50 chocolate chip cookies for the bake sale. Marcus brought in 30 peanut butter cookies and and 20 lemon cookies. If Renee, who's allergic to peanuts, picks a cookie at random, what is the chance she'll have an allergic reaction expressed as a percentage?",
+    "answer": "50",
+    "modified_solution": "def total_cookies():\n    jenny_peanut_butter = 40\n    jenny_chocolate_chip = 50\n    marcus_peanut_butter = 30\n    marcus_lemon = 20\n    \n    total_jenny = jenny_peanut_butter + jenny_chocolate_chip\n    total_marcus = marcus_peanut_butter + marcus_lemon\n    \n    total_cookies = total_jenny + total_marcus\n    return total_cookies\n\ndef total_safe_cookies():\n    jenny_chocolate_chip = 50\n    marcus_lemon = 20\n    \n    total_safe = jenny_chocolate_chip + marcus_lemon\n    return total_safe\n\ndef calculate_allergic_reaction_percentage():\n    total = total_cookies()\n    safe = total_safe_cookies()\n    \n    allergic_cookies = total - safe  # Only peanut butter cookies are allergic for Renee\n    percentage = (allergic_cookies / total) * 100\n    \n    return percentage\n\ndef main():\n    allergic_reaction_percentage = calculate_allergic_reaction_percentage()\n    print(f\"Chance of allergic reaction: {allergic_reaction_percentage:.2f}%\")\n\nmain()",
+    "features": {
+      "general_type": "probability",
+      "specific_topics": [
+        "combinatorics",
+        "allergy probability"
+      ],
+      "operations": [
+        "addition",
+        "subtraction",
+        "division",
+        "multiplication"
+      ],
+      "theorems": [
+        "percentage calculation"
+      ],
+      "difficulty_level": "easy"
+    }
+  },
+  {
+    "idx": 263,
+    "question": "What is the integer value of $n$, where $0 \\leq n \\leq 11$, such that $n \\equiv 10389 \\pmod{12}$?",
+    "answer": "9",
+    "modified_solution": "def find_n_modulo_x(value, mod):\n    return value % mod\n\ndef main():\n    value = 10389\n    mod = 12\n    n = find_n_modulo_x(value, mod)\n    print(n)\n\nmain()",
+    "features": {
+      "general_type": "algebra",
+      "specific_topics": [
+        "modular arithmetic"
+      ],
+      "operations": [
+        "modulus"
+      ],
+      "theorems": [],
+      "difficulty_level": "easy"
+    }
+  },
+  {
+    "idx": 264,
+    "question": "Compute\n\\[\\begin{pmatrix} 0 & c & -b \\\\ -c & 0 & a \\\\ b & -a & 0 \\end{pmatrix} \\begin{pmatrix} a^2 & ab & ac \\\\ ab & b^2 & bc \\\\ ac & bc & c^2 \\end{pmatrix}.\\]",
+    "answer": "\\begin{pmatrix}0&0&0\\0&0&0\\0&0&0\\end{pmatrix}",
+    "modified_solution": "import numpy as np\n\ndef create_first_matrix(c, a, b):\n    return np.array([[0, c, -b],\n                     [-c, 0, a],\n                     [b, -a, 0]], dtype=float)\n\ndef create_second_matrix(a, b, c):\n    return np.array([[a**2, a*b, a*c],\n                     [a*b, b**2, b*c],\n                     [a*c, b*c, c**2]], dtype=float)\n\ndef multiply_matrices(first_matrix, second_matrix):\n    return np.dot(first_matrix, second_matrix)\n\ndef main(a, b, c):\n    first_matrix = create_first_matrix(c, a, b)\n    second_matrix = create_second_matrix(a, b, c)\n    result = multiply_matrices(first_matrix, second_matrix)\n    print(result)\n\n# Example input\na = 1\nb = 2\nc = 3\nmain(a, b, c)",
+    "features": {
+      "general_type": "algebra",
+      "specific_topics": [
+        "matrix multiplication",
+        "linear algebra"
+      ],
+      "operations": [
+        "matrix creation",
+        "dot product"
+      ],
+      "theorems": [
+        "properties of matrix multiplication",
+        "symmetric matrices"
+      ],
+      "difficulty_level": "medium"
+    }
+  },
+  {
+    "idx": 266,
+    "question": "The endpoints of a diameter of circle $M$ are $(-1,-4)$ and $(-7,6)$. What are the coordinates of the center of circle $M$? Express your answer as an ordered pair.",
+    "answer": "(-4,1)",
+    "modified_solution": "def calculate_midpoint(point1, point2):\n    # Calculate the midpoint (center) of the two points\n    midpoint_x = (point1[0] + point2[0]) / 2\n    midpoint_y = (point1[1] + point2[1]) / 2\n    return (midpoint_x, midpoint_y)\n\ndef main():\n    # Input points for the diameter of the circle\n    point1 = (-1, -4)\n    point2 = (-7, 6)\n    \n    # Calculate the center of the circle\n    center = calculate_midpoint(point1, point2)\n    \n    # Print the final answer\n    print(f\"The center of circle M is at: {center}\")\n\nmain()",
+    "features": {
+      "general_type": "geometry",
+      "specific_topics": [
+        "circle",
+        "midpoint"
+      ],
+      "operations": [
+        "addition",
+        "division"
+      ],
+      "theorems": [
+        "midpoint formula"
+      ],
+      "difficulty_level": "easy"
+    }
+  },
+  {
+    "idx": 267,
+    "question": "A small theater company sells tickets to a show.  They have a 400 seat theater and fill to 80% capacity.  Each ticket cost $30.  They repeated the same performance 2 other days.  How much did they make?",
+    "answer": "28800",
+    "modified_solution": "def calculate_capacity(seats, occupancy_rate):\n    return seats * occupancy_rate\n\ndef calculate_revenue(tickets_sold, ticket_price):\n    return tickets_sold * ticket_price\n\ndef calculate_total_revenue(seats, occupancy_rate, ticket_price, performance_days):\n    tickets_sold = calculate_capacity(seats, occupancy_rate)\n    revenue_per_day = calculate_revenue(tickets_sold, ticket_price)\n    total_revenue = revenue_per_day * performance_days\n    return total_revenue\n\ndef main():\n    seats = 400\n    occupancy_rate = 0.80\n    ticket_price = 30\n    performance_days = 3\n    \n    total_revenue = calculate_total_revenue(seats, occupancy_rate, ticket_price, performance_days)\n    print(total_revenue)\n\nmain()",
+    "features": {
+      "general_type": "algebra",
+      "specific_topics": [
+        "basic arithmetic",
+        "percentage calculations",
+        "revenue calculations"
+      ],
+      "operations": [
+        "multiplication"
+      ],
+      "theorems": [
+        "Revenue = Tickets Sold * Ticket Price",
+        "Capacity = Total Seats * Occupancy Rate"
+      ],
+      "difficulty_level": "easy"
+    }
+  },
+  {
+    "idx": 268,
+    "question": "What are the potential degrees of the remainder when a polynomial is divided by $2x^2 - 7x + 18$? Please list all possible values, separated by commas.",
+    "answer": "0,1",
+    "modified_solution": "def get_remainder_degrees(divisor_degree):\n    # The remainder degree is less than the divisor degree\n    return list(range(divisor_degree))\n\ndef main():\n    divisor = 2  # Degree of the polynomial 2x^2 - 7x + 18\n    remainder_degrees = get_remainder_degrees(divisor)\n    \n    # Print the final answer as required\n    print(\", \".join(map(str, remainder_degrees)))\n\n# Run the main function to print the result\nmain()",
+    "features": {
+      "general_type": "algebra",
+      "specific_topics": [
+        "polynomial division",
+        "remainder theorem"
+      ],
+      "operations": [
+        "division",
+        "list creation",
+        "mapping",
+        "string joining"
+      ],
+      "theorems": [
+        "Remainder theorem"
+      ],
+      "difficulty_level": "easy"
+    }
+  },
+  {
+    "idx": 269,
+    "question": "Grace baked 4 whole pumpkin pies. She sold 1 whole pumpkin pie and gave 1 whole pumpkin pie to her friend. The remaining whole pumpkin pies were each sliced into 6 pieces. Her family ate 2/3 pieces. How many pieces of pumpkin pie were left?",
+    "answer": "4",
+    "modified_solution": "def total_pumpkin_pies():\n    return 4\n\ndef sold_pumpkin_pie():\n    return 1\n\ndef gave_away_pumpkin_pie():\n    return 1\n\ndef remaining_pumpkin_pies(total, sold, gave_away):\n    return total - sold - gave_away\n\ndef sliced_pumpkin_pies(remaining):\n    return remaining * 6\n\ndef family_eaten_pieces(sliced_pies):\n    return (2/3) * sliced_pies\n\ndef pieces_left(total_sliced, eaten):\n    return total_sliced - eaten\n\ndef main():\n    total = total_pumpkin_pies()\n    sold = sold_pumpkin_pie()\n    gave_away = gave_away_pumpkin_pie()\n    \n    remaining = remaining_pumpkin_pies(total, sold, gave_away)\n    total_sliced = sliced_pumpkin_pies(remaining)\n    eaten = family_eaten_pieces(total_sliced)\n    left = pieces_left(total_sliced, eaten)\n    \n    print(left)\n\nmain()",
+    "features": {
+      "general_type": "Arithmetic",
+      "specific_topics": [
+        "Basic operations with integers",
+        "Fractions",
+        "Multiplication"
+      ],
+      "operations": [
+        "Subtraction",
+        "Multiplication",
+        "Division"
+      ],
+      "theorems": [
+        "Distribution of whole into parts",
+        "Calculating fractions of amounts"
+      ],
+      "difficulty_level": "easy"
+    }
+  },
+  {
+    "idx": 270,
+    "question": "x kids in preschool are ready for a nap.  1/2 of the kids fall asleep within the first 5 minutes.  Then half of the kids remaining fall asleep within another 5 minutes.  How many kids are still awake?\nIf we know the answer to the above question is 5, what is the value of unknown variable x?",
+    "answer": "20",
+    "modified_solution": "def half_asleep(total_kids):\n    # First half falls asleep\n    asleep_first_5 = total_kids / 2\n    remaining_after_first = total_kids - asleep_first_5\n    \n    # Next half falls asleep\n    asleep_second_5 = remaining_after_first / 2\n    final_awake = remaining_after_first - asleep_second_5\n    \n    return final_awake\n\ndef find_value_of_x(awake_kids):\n    # The equation we derived: awake_kids = x - (x/2 + (x/2)/2)\n    # Solving for x gives us: x = 4 * awake_kids\n    return 4 * awake_kids\n\n# Number of kids still awake after the sleeping process\nawake_kids = 5\ntotal_kids = find_value_of_x(awake_kids)\n\nprint(total_kids)",
+    "features": {
+      "general_type": "algebra",
+      "specific_topics": [
+        "solving equations",
+        "division",
+        "proportions"
+      ],
+      "operations": [
+        "division",
+        "subtraction",
+        "multiplication"
+      ],
+      "theorems": [
+        "half-life principle",
+        "linear equations"
+      ],
+      "difficulty_level": "easy"
+    }
+  },
+  {
+    "idx": 271,
+    "question": "Peyton has 3 children and they each get a juice box in their lunch, 5 days a week.  The school year is x weeks long. She will need 375 juice boxes for the entire school year for all of her children. What is the value of unknown variable x? What is the value of unknown variable x?",
+    "answer": "25",
+    "modified_solution": "def calculate_total_juice_boxes_per_week(children, juice_boxes_per_child):\n    return children * juice_boxes_per_child\n\ndef calculate_weeks_needed_for_juice_boxes(total_juice_boxes, juice_boxes_per_week):\n    return total_juice_boxes / juice_boxes_per_week\n\ndef main():\n    children = 3\n    juice_boxes_per_child = 1 * 5  # 1 juice box per day for 5 days\n    total_juice_boxes = 375\n\n    juice_boxes_per_week = calculate_total_juice_boxes_per_week(children, juice_boxes_per_child)\n    x = calculate_weeks_needed_for_juice_boxes(total_juice_boxes, juice_boxes_per_week)\n\n    print(x)\n\nmain()",
+    "features": {
+      "general_type": "algebra",
+      "specific_topics": [
+        "basic arithmetic",
+        "rate problems"
+      ],
+      "operations": [
+        "multiplication",
+        "division"
+      ],
+      "theorems": [
+        "total quantity = rate * time"
+      ],
+      "difficulty_level": "easy"
+    }
+  },
+  {
+    "idx": 272,
+    "question": "If Jack sent out 200 invitations for his wedding and received RSVPs from 90% of the guests, but only 80% of those who RSVPed actually attended the wedding, and 10 people who attended did not give him a gift, how many thank you cards does Jack need to send out?",
+    "answer": "134",
+    "modified_solution": "def total_invitations():\n    return 200\n\ndef rsvps_received(invitations):\n    return int(invitations * 0.90)\n\ndef attendees(rsvps):\n    return int(rsvps * 0.80)\n\ndef gifts_received(attendees):\n    return attendees - 10\n\ndef thank_you_cards_needed(gifts):\n    return gifts\n\ndef main():\n    invitations = total_invitations()\n    rsvps = rsvps_received(invitations)\n    total_attendees = attendees(rsvps)\n    total_gifts = gifts_received(total_attendees)\n    thank_you_cards = thank_you_cards_needed(total_gifts)\n    \n    print(thank_you_cards)\n\nmain()",
+    "features": {
+      "general_type": "Arithmetic",
+      "specific_topics": [
+        "Percentages",
+        "Basic Operations"
+      ],
+      "operations": [
+        "Multiplication",
+        "Integer Conversion",
+        "Subtraction"
+      ],
+      "theorems": [
+        "Percentage Calculation"
+      ],
+      "difficulty_level": "easy"
+    }
+  },
+  {
+    "idx": 273,
+    "question": "Determine the largest multiple of 13 that is a two-digit number.",
+    "answer": "91",
+    "modified_solution": "def find_largest_two_digit_multiple_of_13():\n    # Sub-problem 1: Identify the largest two-digit number\n    largest_two_digit_number = 99\n    \n    # Sub-problem 2: Calculate the largest multiple of 13 less than or equal to largest_two_digit_number\n    largest_multiple_of_13 = largest_two_digit_number - (largest_two_digit_number % 13)\n    \n    return largest_multiple_of_13\n\n# Final output\nlargest_multiple = find_largest_two_digit_multiple_of_13()\nprint(largest_multiple)",
+    "features": {
+      "general_type": "Arithmetic",
+      "specific_topics": [
+        "Multiples",
+        "Two-digit numbers"
+      ],
+      "operations": [
+        "Subtraction",
+        "Modulus"
+      ],
+      "theorems": [
+        "Properties of multiples"
+      ],
+      "difficulty_level": "easy"
+    }
+  },
+  {
+    "idx": 274,
+    "question": "If your video streaming subscription costs $14 per month and you are splitting the cost evenly with your friend, what is the total amount you will pay for this service after the first year?",
+    "answer": "84",
+    "modified_solution": "def calculate_total_cost_per_month(monthly_cost):\n    return monthly_cost\n\ndef split_cost(total_cost, number_of_people):\n    return total_cost / number_of_people\n\ndef calculate_total_after_year(monthly_cost, number_of_people):\n    total_cost = calculate_total_cost_per_month(monthly_cost) * 12\n    return split_cost(total_cost, number_of_people)\n\ndef main():\n    monthly_cost = 14\n    number_of_people = 2\n    total_amount_paid = calculate_total_after_year(monthly_cost, number_of_people)\n    print(total_amount_paid)\n\nmain()",
+    "features": {
+      "general_type": "arithmetic",
+      "specific_topics": [
+        "cost sharing",
+        "monthly expenses"
+      ],
+      "operations": [
+        "multiplication",
+        "division"
+      ],
+      "theorems": [
+        "total cost = monthly cost * number of months",
+        "split cost = total cost / number of people"
+      ],
+      "difficulty_level": "easy"
+    }
+  },
+  {
+    "idx": 275,
+    "question": "A gift shop sells bracelets at $15 each, a gold heart necklace at $10,  and a personalized coffee mug at x.  Raine buys three bracelets, two gold heart necklaces, and one coffee mug for her friends. How much change does Raine get back if she gives a one hundred dollar bill?\nIf we know the answer to the above question is 15, what is the value of unknown variable x?",
+    "answer": "20",
+    "modified_solution": "def calculate_total_cost(bracelet_price, necklace_price, mug_price, bracelet_count, necklace_count, mug_count):\n    total_cost = (bracelet_price * bracelet_count) + (necklace_price * necklace_count) + (mug_price * mug_count)\n    return total_cost\n\ndef calculate_change(total_cost, bill_amount):\n    change = bill_amount - total_cost\n    return change\n\ndef determine_coffee_mug_price(expected_change, bracelet_price, necklace_price, bracelet_count, necklace_count, bill_amount):\n    # Using the formula: change = bill_amount - total_cost\n    # Rearranging gives us total_cost = bill_amount - change\n    total_cost = bill_amount - expected_change\n    mug_price = total_cost - (bracelet_price * bracelet_count + necklace_price * necklace_count)\n    return mug_price\n\ndef main():\n    bracelet_price = 15\n    necklace_price = 10\n    bracelet_count = 3\n    necklace_count = 2\n    bill_amount = 100\n    expected_change = 15\n\n    mug_price = determine_coffee_mug_price(expected_change, bracelet_price, necklace_price, bracelet_count, necklace_count, bill_amount)\n    print(mug_price)\n\nmain()",
+    "features": {
+      "general_type": "algebra",
+      "specific_topics": [
+        "linear equations",
+        "solving for variables"
+      ],
+      "operations": [
+        "addition",
+        "multiplication",
+        "subtraction"
+      ],
+      "theorems": [
+        "total cost calculation",
+        "change calculation"
+      ],
+      "difficulty_level": "easy"
+    }
+  },
+  {
+    "idx": 276,
+    "question": "If Napoleon has 17 jelly beans and Sedrich has 4 more jelly beans than Napoleon, and twice the sum of their jelly beans is equal to 4 times the number of jelly beans that Mikey has, how many jelly beans does Mikey have?",
+    "answer": "19",
+    "modified_solution": "def napoleon_jelly_beans():\n    return 17\n\ndef sedrich_jelly_beans(napoleon):\n    return napoleon + 4\n\ndef total_jelly_beans(napoleon, sedrich):\n    return napoleon + sedrich\n\ndef mikey_jelly_beans(napoleon, sedrich):\n    total = total_jelly_beans(napoleon, sedrich)\n    return (2 * total) / 4\n\ndef main():\n    napoleon = napoleon_jelly_beans()\n    sedrich = sedrich_jelly_beans(napoleon)\n    mikey = mikey_jelly_beans(napoleon, sedrich)\n    print(mikey)\n\nmain()",
+    "features": {
+      "general_type": "algebra",
+      "specific_topics": [
+        "linear equations",
+        "arithmetic operations"
+      ],
+      "operations": [
+        "addition",
+        "multiplication",
+        "division"
+      ],
+      "theorems": [
+        "sum of values",
+        "proportional relationships"
+      ],
+      "difficulty_level": "easy"
+    }
+  },
+  {
+    "idx": 277,
+    "question": "After selling 3 gold coins to Dorothy and receiving a payment of $12, how many gold coins does Roman the Tavernmaster have left if he initially had $20 worth of gold coins?",
+    "answer": "2",
+    "modified_solution": "def initial_gold_value():\n    return 20  # The initial worth of gold coins in dollars\n\ndef gold_coin_value():\n    return 12 / 3  # The value of each gold coin sold to Dorothy\n\ndef coins_sold():\n    return 3  # The number of gold coins sold\n\ndef remaining_coins(initial_value, sold_coins, coin_value):\n    total_value = initial_value / coin_value  # Total number of gold coins initially\n    return total_value - sold_coins  # Remaining gold coins after selling\n\n# Main logic\ninitial_value = initial_gold_value()\ncoin_value = gold_coin_value()\nsold_coins = coins_sold()\nremaining = remaining_coins(initial_value, sold_coins, coin_value)\n\nprint(remaining)",
+    "features": {
+      "general_type": "algebra",
+      "specific_topics": [
+        "basic arithmetic",
+        "division",
+        "subtraction"
+      ],
+      "operations": [
+        "division",
+        "subtraction",
+        "multiplication"
+      ],
+      "theorems": [
+        "value calculation",
+        "distribution of value"
+      ],
+      "difficulty_level": "easy"
+    }
+  },
+  {
+    "idx": 278,
+    "question": "A box with a volume of 16 $\\text{cm}^3$ can hold 50 paperclips. How many paperclips could a box with a volume of 48 $\\text{cm}^3$ hold?",
+    "answer": "150",
+    "modified_solution": "def volume_per_paperclip(box_volume, num_paperclips):\n    \"\"\"Calculate the volume occupied by one paperclip.\"\"\"\n    return box_volume / num_paperclips\n\ndef calculate_paperclips_in_larger_box(larger_box_volume, volume_per_clip):\n    \"\"\"Calculate how many paperclips fit in a larger box based on the volume per paperclip.\"\"\"\n    return larger_box_volume // volume_per_clip  # Using integer division\n\ndef main():\n    box_volume = 16  # cm^3\n    num_paperclips = 50\n    \n    # Step 1: Calculate volume per paperclip\n    volume_per_clip = volume_per_paperclip(box_volume, num_paperclips)\n    \n    # Step 2: Calculate for larger box volume\n    larger_box_volume = 48  # cm^3\n    paperclips_in_larger_box = calculate_paperclips_in_larger_box(larger_box_volume, volume_per_clip)\n    \n    # Since we want the exact number, calculate using normal division and round\n    paperclips_in_larger_box = int(larger_box_volume / volume_per_clip)\n    \n    # Final output\n    print(paperclips_in_larger_box)\n\nif __name__ == \"__main__\":\n    main()",
+    "features": {
+      "general_type": "algebra",
+      "specific_topics": [
+        "rates",
+        "proportions"
+      ],
+      "operations": [
+        "division",
+        "integer division",
+        "rounding"
+      ],
+      "theorems": [
+        "Volume formula for objects",
+        "Proportional reasoning"
+      ],
+      "difficulty_level": "easy"
+    }
+  },
+  {
+    "idx": 279,
+    "question": "Express $\\frac{0.\\overline{666}}{1.\\overline{333}}$ as a common fraction.",
+    "answer": "\\frac{1}{2}",
+    "modified_solution": "def repeating_decimal_to_fraction(repeating_decimal):\n    \"\"\"Convert a repeating decimal string to a fraction.\"\"\"\n    if '(' not in repeating_decimal:\n        # Handle non-repeating part\n        integer_part, decimal_part = repeating_decimal.split('.')\n        return int(integer_part) + int(decimal_part) / (10 ** len(decimal_part))\n\n    # Split into non-repeating and repeating parts\n    non_repeating, repeating = repeating_decimal.split('(')\n    repeating = repeating.rstrip(')')\n\n    # Lengths of parts\n    non_repeating_length = len(non_repeating.split('.')[1]) if '.' in non_repeating else 0\n    repeating_length = len(repeating)\n\n    # Calculate value contributions\n    numerator = int(non_repeating.replace('.', '') + repeating) - int(non_repeating.replace('.', ''))\n    denominator = (10 ** (non_repeating_length + repeating_length) - 10 ** non_repeating_length)\n\n    return numerator, denominator\n\ndef fraction_simplification(numerator, denominator):\n    \"\"\"Simplify the fraction (numerator / denominator) by finding GCD.\"\"\"\n    from math import gcd\n    common_divisor = gcd(numerator, denominator)\n    return numerator // common_divisor, denominator // common_divisor\n\ndef main():\n    # 1. Convert 0.666... to a fraction\n    num_666, den_666 = repeating_decimal_to_fraction(\"0.(666)\")\n    \n    # 2. Convert 1.333... to a fraction\n    num_1333, den_1333 = repeating_decimal_to_fraction(\"1.(333)\")\n    \n    # 3. Calculate the division of the two fractions\n    # (num_666 / den_666) / (num_1333 / den_1333) = (num_666 * den_1333) / (den_666 * num_1333)\n    resulting_numerator = num_666 * den_1333\n    resulting_denominator = den_666 * num_1333\n    \n    # 4. Simplify the resulting fraction\n    simplified_numerator, simplified_denominator = fraction_simplification(resulting_numerator, resulting_denominator)\n    \n    # 5. Print the final answer\n    print(f\"The fraction is {simplified_numerator}/{simplified_denominator}\")\n\nmain()",
+    "features": {
+      "general_type": "algebra",
+      "specific_topics": [
+        "fractions",
+        "repeating decimals",
+        "gcd (greatest common divisor)"
+      ],
+      "operations": [
+        "conversion",
+        "division",
+        "subtraction",
+        "multiplication",
+        "simplification"
+      ],
+      "theorems": [
+        "gcd simplification"
+      ],
+      "difficulty_level": "medium"
+    }
+  },
+  {
+    "idx": 280,
+    "question": "In one day, Ella's dog eats 4 pounds of food for every one pound of food that Ella eats. How much food do Ella and her dog in 10 days if Ella eat 20 pounds of food each day?",
+    "answer": "1000",
+    "modified_solution": "def food_per_day_ella():\n    return 20  # pounds of food Ella eats each day\n\ndef food_per_day_dog(ella_food):\n    return 4 * ella_food  # pounds of food dog eats for every pound Ella eats\n\ndef total_food_per_day(ella_food, dog_food):\n    return ella_food + dog_food  # total food consumed per day by both\n\ndef total_food_in_days(daily_food, days):\n    return daily_food * days  # total food consumed in specified days\n\ndef main():\n    days = 10\n    ella_food = food_per_day_ella()\n    dog_food = food_per_day_dog(ella_food)\n    daily_food = total_food_per_day(ella_food, dog_food)\n    total_food = total_food_in_days(daily_food, days)\n    print(total_food)\n\nmain()",
+    "features": {
+      "general_type": "algebra",
+      "specific_topics": [
+        "proportion",
+        "ratios",
+        "basic arithmetic"
+      ],
+      "operations": [
+        "multiplication",
+        "addition"
+      ],
+      "theorems": [
+        "constant multiplication",
+        "linear addition"
+      ],
+      "difficulty_level": "easy"
+    }
+  },
+  {
+    "idx": 281,
+    "question": "Let $f(x) = \\sin{x} + 2\\cos{x} + 3\\tan{x}$, using radian measure for the variable $x$.  Let $r$ be the smallest positive value of $x$ for which $f(x) = 0$.  Find $\\lfloor r \\rfloor.$",
+    "answer": "3",
+    "modified_solution": "import numpy as np\nfrom scipy.optimize import fsolve\n\ndef f(x):\n    return np.sin(x) + 2 * np.cos(x) + 3 * np.tan(x)\n\ndef find_root():\n    # Instead of starting at 1.0, we should increase the initial guess appropriately to find the smallest positive root\n    # We might try some values based on visual observation (or a plot)\n    initial_guesses = np.linspace(1, 10, 100)\n    roots = []\n\n    # Loop through guesses to find roots\n    for guess in initial_guesses:\n        root = fsolve(f, guess)\n        # We only want the positive roots\n        if root[0] > 0 and root[0] not in roots:\n            roots.append(root[0])\n\n    # Return the smallest positive root found\n    return min(roots)\n\ndef main():\n    r = find_root()\n    print(np.floor(r))\n\nmain()",
+    "features": {
+      "general_type": "calculus",
+      "specific_topics": [
+        "trigonometric functions",
+        "root finding",
+        "numerical methods"
+      ],
+      "operations": [
+        "sine",
+        "cosine",
+        "tangent",
+        "addition",
+        "multiplication",
+        "finding roots"
+      ],
+      "theorems": [
+        "Intermediate Value Theorem (implicitly used)"
+      ],
+      "difficulty_level": "medium"
+    }
+  },
+  {
+    "idx": 282,
+    "question": "Solve for the sum of all possible values of $x$ when $3^{x^2+4x+4}=9^{x+2}$.",
+    "answer": "-2",
+    "modified_solution": "import sympy as sp\n\ndef simplify_equation():\n    # 9 can be expressed as 3^2\n    # So we rewrite the equation: 3^(x^2 + 4x + 4) = (3^2)^(x + 2)\n    # This simplifies to: 3^(x^2 + 4x + 4) = 3^(2(x + 2))\n    # Therefore, we can set the exponents equal to each other.\n    x = sp.symbols('x')\n    return x\n\ndef create_quadratic(x):\n    # Set up the equation: x^2 + 4x + 4 = 2(x + 2)\n    equation = sp.Eq(x**2 + 4*x + 4, 2*(x + 2))\n    return equation\n\ndef solve_quadratic(equation):\n    # Extract the quadratic equation and solve for x\n    solution = sp.solve(equation, sp.symbols('x'))\n    return solution\n\ndef calculate_sum_of_roots(roots):\n    # Calculate the sum of the roots\n    return sum(roots)\n\ndef main():\n    x = simplify_equation()\n    equation = create_quadratic(x)\n    roots = solve_quadratic(equation)\n    sum_of_roots = calculate_sum_of_roots(roots)\n    print(sum_of_roots)\n\nmain()",
+    "features": {
+      "general_type": "algebra",
+      "specific_topics": [
+        "exponential equations",
+        "quadratic equations"
+      ],
+      "operations": [
+        "simplification",
+        "rewriting equations",
+        "equating exponents",
+        "solving quadratic equations",
+        "summation"
+      ],
+      "theorems": [
+        "properties of exponents",
+        "quadratic formula"
+      ],
+      "difficulty_level": "medium"
+    }
+  },
+  {
+    "idx": 283,
+    "question": "Simplify: $|{-3^2+4}|$",
+    "answer": "5",
+    "modified_solution": "def calculate_exponent(base, exponent):\n    \"\"\"Calculate base raised to the power of exponent.\"\"\"\n    return base ** exponent\n\ndef calculate_expression(value1, value2):\n    \"\"\"Calculate the expression value1 + value2.\"\"\"\n    return value1 + value2\n\ndef calculate_absolute(value):\n    \"\"\"Calculate the absolute value.\"\"\"\n    return abs(value)\n\ndef simplify_expression():\n    \"\"\"Simplifies the expression |{-3^2 + 4}|.\"\"\"\n    exponent_result = calculate_exponent(-3, 2)  # This will result in 9\n    expression_result = calculate_expression(-exponent_result, 4)  # This will be -9 + 4 = -5\n    absolute_result = calculate_absolute(expression_result)  # This will be | -5 | = 5\n    return absolute_result\n\nfinal_answer = simplify_expression()\nprint(final_answer)",
+    "features": {
+      "general_type": "algebra",
+      "specific_topics": [
+        "absolute value",
+        "exponents",
+        "basic arithmetic"
+      ],
+      "operations": [
+        "exponentiation",
+        "addition",
+        "absolute value calculation"
+      ],
+      "theorems": [],
+      "difficulty_level": "easy"
+    }
+  },
+  {
+    "idx": 284,
+    "question": "Aaron has some brothers. Bennett has 6 brothers. If the number of Bennett's brothers is two less than twice the number of Aaron's brothers, what is the number of Aaron's brothers?",
+    "answer": "4",
+    "modified_solution": "def get_bennetts_brothers():\n    return 6\n\ndef calculate_aerons_brothers(bennetts_brothers):\n    # Let x be the number of Aaron's brothers\n    # The relationship is that Ben's brothers = 2 * Aaron's brothers - 2\n    # So we can set up the equation: benetts_brothers = 2 * aaron_brothers - 2\n    aaron_brothers = (bennetts_brothers + 2) / 2\n    return aaron_brothers\n\ndef main():\n    bennetts_brothers = get_bennetts_brothers()\n    aarons_brothers = calculate_aerons_brothers(bennetts_brothers)\n    print(f\"The number of Aaron's brothers is: {int(aarons_brothers)}\")\n\nif __name__ == \"__main__\":\n    main()",
+    "features": {
+      "general_type": "algebra",
+      "specific_topics": [
+        "linear equations",
+        "variable manipulation"
+      ],
+      "operations": [
+        "addition",
+        "division"
+      ],
+      "theorems": [
+        "algebraic manipulation"
+      ],
+      "difficulty_level": "easy"
+    }
+  },
+  {
+    "idx": 285,
+    "question": "A tiger shark has 180 teeth.  A hammerhead shark has 1/6 the number of teeth that a tiger shark has.  A great white shark has double the sum of teeth of a tiger shark and a hammerhead shark. How many teeth does a great white shark have?",
+    "answer": "420",
+    "modified_solution": "def tiger_shark_teeth():\n    return 180\n\nde
