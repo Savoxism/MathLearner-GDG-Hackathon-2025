@@ -56,7 +56,7 @@ class EmbeddingManager:
         metadatas = []
         
         for example in examples:
-            idx = str(example.get("idx", ""))
+            id = str(example.get("id", ""))
             question = example.get("question", "")
             features = example.get("features", {})
             solution = example.get("modified_solution", "")
@@ -65,7 +65,7 @@ class EmbeddingManager:
             feature_text = self._create_feature_text(features)
             
             # Add to lists for batch processing
-            ids.append(idx)
+            ids.append(id)
             documents.append(feature_text)
             metadatas.append({
                 "question": question,
@@ -160,9 +160,9 @@ class EmbeddingManager:
                 "difficulty_level": "unknown"
             }
             
-            
-embedding_manager = EmbeddingManager()
-examples = embedding_manager.load_training_examples()
+# ONLY RUN THIS ONCE TO CREATE THE EMBEDDING DATABASE          
+# embedding_manager = EmbeddingManager()
+# examples = embedding_manager.load_training_examples()
 
 # if examples:
 #     embedding_manager.add_examples_to_db(examples)

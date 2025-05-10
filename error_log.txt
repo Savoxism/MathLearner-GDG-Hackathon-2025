@@ -1,58 +1,9 @@
 [
   {
-    "idx": 114,
-    "question": "The quadratic equation $x^2+mx+n=0$ has roots that are twice those of $x^2+px+m=0,$ and none of $m,$ $n,$ and $p$ is zero. What is the value of $n/p?$",
-    "answer": "8",
-    "error": "Expected 8, but got -1.0",
-    "timestamp": "2025-05-10T11:32:37.477151"
-  },
-  {
-    "idx": 212,
-    "question": "The circumference of a particular circle is 18 cm. In square centimeters, what is the area of the circle? Express your answer as a common fraction in terms of $\\pi$.",
-    "answer": "\\frac{81}{\\pi}",
-    "error": "Expected \\frac{81}{\\pi}, but got 2/1\u03c0",
-    "timestamp": "2025-05-10T11:33:11.396395"
-  },
-  {
-    "idx": 243,
-    "question": "For a list of five positive integers, none greater than 100, the mean is 1.5 times the mode. If 31, X, 98, $x$ and $x$ are the five integers, what is the value of $x$?\nIf we know the answer to the above question is 34, what is the value of unknown variable X?",
-    "answer": "58",
-    "error": "Expected 58, but got None",
-    "timestamp": "2025-05-09T23:31:49.313800"
-  },
-  {
-    "idx": 436,
-    "question": "Jessica was x% her mother's age when her mother died. If her mother were alive now, ten years later, she would have been 70. How old is Jessica currently?\nIf we know the answer to the above question is 40, what is the value of unknown variable x?",
-    "answer": "50",
-    "error": "Expected 50, but got Value of x: 66.66666666666666",
-    "timestamp": "2025-05-10T00:03:12.766094"
-  },
-  {
-    "idx": 441,
-    "question": "Jesse is desperately trying to finish a book for a school book report due on Monday so he can play this weekend. Friday afternoon, he read the first 5 chapters, which were 10, 15, 27, 12, and x pages, respectively, before taking a break. To his dismay, he found that he was only 1/3 of the way through the book. How many pages does he still have to read?\nIf we know the answer to the above question is 166, what is the value of unknown variable x?",
-    "answer": "19",
-    "error": "Traceback (most recent call last):\n  File \"D:\\Github\\MathLearner-GDG-Hackathon-2025\\temp_solution.py\", line 19, in <module>\n    total_read = total_pages_read(chapters) + x  # total read includes x\n                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~\nTypeError: unsupported operand type(s) for +: 'int' and 'str'\n",
-    "timestamp": "2025-05-10T00:04:06.180162"
-  },
-  {
-    "idx": 457,
-    "question": "Jo adds up all the positive integers from 1 to X. Kate does a similar thing with the first 50 positive integers; however, she first rounds every integer to its nearest multiple of 10 (rounding 5s up) and then adds the 50 values. The positive difference between Jo's sum and Kate's sum is 25. What is the value of unknown variable X?",
-    "answer": "50",
-    "error": "Expected 50, but got None",
-    "timestamp": "2025-05-10T00:07:06.252162"
-  },
-  {
-    "idx": 476,
-    "question": "Yun had x paperclips initially, but then lost 12. Marion has 1/4 more than what Yun currently has, plus 7. How many paperclips does Marion have?\nIf we know the answer to the above question is 9, what is the value of unknown variable x?",
-    "answer": "20",
-    "error": "Expected 20, but got 13",
-    "timestamp": "2025-05-10T00:10:11.507615"
-  },
-  {
-    "idx": 482,
-    "question": "The matrices\n\\[\\begin{pmatrix} a & 2 \\\\ X & 4 \\end{pmatrix} \\quad \\text{and} \\quad \\begin{pmatrix} -\\frac{2}{7} & \\frac{1}{7} \\\\ b & \\frac{3}{14} \\end{pmatrix}\\]are inverses.  Enter the ordered pair $(a,b). The answer is 14. What is the value of unknown variable X?",
-    "answer": "1",
-    "error": "Expected 1, but got Ordered pair (a, b): (-3.00000000000000, 0.0714285714285714)\nValue of unknown variable X: 1.00000000000000\nAdjusted Ordered pair (must sum to 14): (5.46428571428571, 8.53571428571428)",
-    "timestamp": "2025-05-10T00:11:48.433069"
+    "id": 570,
+    "question": "How many distinct $x$-intercepts does the graph of $y = (x-5)(x^2+5x+6)$ have?",
+    "answer": "3",
+    "error": "Expected 3, but got Distinct real roots: {np.float64(-3.0), 5, np.float64(-2.0)}\n3",
+    "timestamp": "2025-05-11T00:17:14.894553"
   },
 ]

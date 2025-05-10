@@ -1,4 +1,4 @@
-Dataset used: MATHS (2021)
+Dataset used: MetaMaths (2021)
 Model used: GPT-4o Mini / Gemini 2.5 Flash Thinking
 
 The Learning Module
@@ -45,9 +45,3 @@ METRICS
 + Precision Accuracy: This metric assesses the accuracy of the system specifically in scenarios where the new questions successfully find a similar solution idea in the knowledge base. 
 
 + Target Achievement Rate: This metric measures the framework’s effectiveness in enabling the LLM to use retrieved solutions to correctly answer problems that the CoT baseline failed to address. It signifies that the framework is not merely improving accuracy on problems that CoT could already handle (albeit perhaps less consistently) but is genuinely expanding the set of solvable problems for the LLM. By providing crucial scaffolding in the form of retrieved solution strategies, MathLearner enables the LLM to tackle challenges that would otherwise be beyond its unassisted CoT capabilities.   
-
-python main.py train --dataset precalculus.json
-
-python main.py solve --problem "Tìm đạo hàm của f(x) = x^2 + 3x + 1"
-
-python main.py evaluate --test-problems test_problems.json

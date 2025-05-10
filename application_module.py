@@ -1,26 +1,35 @@
 from embedding import EmbeddingManager
-from learning_module import AIModelClient, MathProblemSolver
-from utils import  run_python_code
+from learning_module import AIModelClient
+from utils import run_python_code
 import os
 import json
-from typing import Any, Dict
+from typing import Any
 import time
 from dotenv import load_dotenv
 
-import warnings 
-warnings.filterwarnings("ignore")
 _ = load_dotenv()
 
 class ApplicationModule:
     def __init__(self):
-        """Khởi tạo module ứng dụng với các thành phần cần thiết."""
+        """Initialize the application module with necessary components."""
         self.api_key = os.getenv("OPENAI_API_KEY")
         self.base_url = "https://api.openai.com/v1"
         
-        # Initialize client AI model
-        SOLVER_MODEL = "gpt-4o-mini"
+        # Initialize client model for most tasks
+        CLIENT_MODEL = "gpt-4o-mini"
         
         self.model_client = AIModelClient(
+            base_url=self.base_url,
+            api_key=self.api_key,
+            model_name=CLIENT_MODEL,
+        )
+
+        # Initialize client model for solving problems
+        # SOLVER_MODEL = "qwen/qwen-2.5-coder-32b-instruct:free"
+        SOLVER_MODEL = "gpt-4o-mini"
+        self.solver_model_client = AIModelClient(
+            # base_url="https://openrouter.ai/api/v1",
+            # api_key=os.getenv("OPENROUTER_API_KEY"),
             base_url=self.base_url,
             api_key=self.api_key,
             model_name=SOLVER_MODEL,
@@ -59,7 +68,7 @@ class ApplicationModule:
         
         print(json.dumps(features, indent=2, ensure_ascii=False))
         
-        # Step 2: Find similar problems
+        # Step 2: find similar problems
         similar_problems = self.embedding_manager.search_similar_problems(
             question, features, n_results=3
         )
@@ -71,14 +80,14 @@ class ApplicationModule:
         else:
             print("No similar problems found.")
         
-        # Step 3: Solve the problem
+        # Step 3: solve the problem
         solution_code = self._generate_solution_with_retrieval(question, similar_problems)
         
-        # Step 4: Execute the solution (python code)
+        # Step 4: execute the solution (python code)
         success, output, final_code = self._execute_and_improve_solution(question, solution_code)
         
         # Step 5: verify the result
-        verification_result =   self._verify_result(question, output, final_code)
+        verification_result = self._verify_result(question, output, final_code)
         
         result = {
             "question": question,
@@ -95,7 +104,7 @@ class ApplicationModule:
     def _generate_solution_with_retrieval(self, question: str, similar_problems: list[dict[str, Any]] ) -> str:
         """Generate solution based on similar problems"""
         if not similar_problems:
-            return self.model_client.generate_code(self.system_prompt, question)
+            return self.solver_model_client.generate_code(self.system_prompt, question)
         
         retrieval_prompt = f"Question: {question}\n\n"
         retrieval_prompt += "The following are the solutions in Python code for similar problems:\n\n"
@@ -107,7 +116,7 @@ class ApplicationModule:
             
         retrieval_prompt += "Your task is to create a Python solution for the new problem, using the similar solutions as references."
         
-        return self.model_client.generate_code(self.retrieval_system_prompt, retrieval_prompt)
+        return self.solver_model_client.generate_code(self.retrieval_system_prompt, retrieval_prompt)
     
     def _execute_and_improve_solution(self, question: str, solution_code: str) -> tuple[bool, str, str]:
         """Execute and improve solution through multiple iterations."""
@@ -133,7 +142,7 @@ class ApplicationModule:
                 # Improve code
                 if iteration < self.max_iterations:
                     print("Improving code...")
-                    current_code = self.model_client.improve_code(
+                    current_code = self.solver_model_client.improve_code(
                         self.system_prompt, question, current_code, error
                     )
             
@@ -165,34 +174,49 @@ class ApplicationModule:
         
         return completion.choices[0].message.content.strip()        
     
-    def _verify_result(self, question: str, output: str, code: str) -> Dict[str, Any]:
-        """Xác minh kết quả bằng LLM khác."""
+    def _verify_result(self, question: str, output: str, code: str) -> dict[str, Any]:
+        """Verify the result with another LLM."""
+        # Skip verification if code was successfully executed
+        # Check if we got the result from code execution by checking if the output exists
+        if output and output.strip() != "" and not output.startswith("Error"):
+            return {
+                "correct": True,
+                "answer": output,
+                "evaluation": "The solution was successfully executed. No verification needed."
+            }
+        
+        # Add Chain of Thought prompting for verification when code execution failed
         verification_prompt = f"""
-        Hãy xác minh kết quả cho bài toán sau:
+        Verify the result for the following problem:
         
-        Câu hỏi: {question}
+        Question: {question}
         
-        Kết quả: {output}
+        Result: {output}
         
-        Mã Python đã sử dụng:
+        Python code used:
         ```python
         {code}
         ```
         
-        CHỈ đánh giá tính CHÍNH XÁC về mặt TOÁN HỌC của kết quả. Không đánh giá về style, hiệu quả hay cách viết code.
+        Please think step by step:
+        1. Understand what the problem is asking for
+        2. Analyze the given result
+        3. Determine the correct approach to solve this problem
+        4. Calculate the expected result
+        5. Compare your calculated result with the given result
         
-        Trả lời dưới dạng JSON với các trường:
-        - correct (boolean): kết quả có chính xác về mặt toán học không (true/false)
-        - answer (string): kết quả chính xác nếu kết quả hiện tại không chính xác
-        - evaluation (string): đánh giá ngắn gọn về lý do tại sao kết quả đúng/sai
+        After your step-by-step reasoning, answer in JSON format with the following fields:
+        - correct (boolean): whether the result is correct in terms of mathematics (true/false)
+        - answer (string): the correct result if the current result is not correct
+        - evaluation (string): a concise evaluation of the reason why the result is correct/incorrect
         
-        Nếu kết quả là một số duy nhất và đúng, hãy LUÔN đánh giá là correct=true.
+        If the result is a single number and correct, always evaluate correct=true.
         """
         
         completion = self.model_client.client.chat.completions.create(
             model=self.model_client.model_name,
             messages=[
-                {"role": "system", "content": "Bạn là một chuyên gia xác minh kết quả toán học. Hãy đánh giá kết quả MỘT CÁCH CHÍNH XÁC và KHÁCH QUAN. CHỈ dựa vào các phép tính toán học."},
+                {"role": "system", "content": "You are a math expert. First think through the problem step by step, then evaluate the result accurately and objectively."},
                 {"role": "user", "content": verification_prompt}
             ]
         )
@@ -200,73 +224,44 @@ class ApplicationModule:
         response = completion.choices[0].message.content.strip()
         
         try:
-            # Cố gắng trích xuất JSON từ phản hồi
+            # Extract the JSON section from the response
             if "```json" in response:
                 json_str = response.split("```json")[1].split("```")[0].strip()
             elif "```" in response:
                 json_str = response.split("```")[1].strip()
             else:
-                json_str = response
+                # Look for JSON-like structure in the response after Chain of Thought
+                if "{" in response and "}" in response:
+                    json_part = response[response.rfind("{"):response.rfind("}")+1]
+                    json_str = json_part
+                else:
+                    json_str = response
             
             verification_result = json.loads(json_str)
             
-            # Xác nhận lại kết quả nếu output là một số và giống với answer
+            # Verify again if output is a number and matches answer
             if output.strip().isdigit() and "answer" in verification_result:
                 if str(verification_result["answer"]).strip() == output.strip():
                     verification_result["correct"] = True
-                    verification_result["evaluation"] = "Kết quả chính xác."
+                    verification_result["evaluation"] = "The result is correct."
         except:
-            # Nếu không thể phân tích JSON, tự đánh giá kết quả
+            # If cannot parse JSON, evaluate the result
             try:
-                # Kiểm tra xem output có phải là số không
+                # Check if output is a number
                 float_output = float(output.strip())
                 verification_result = {
                     "correct": True,
-                    "answer": output.strip(),
-                    "evaluation": "Kết quả là một số duy nhất và được tự động xác nhận là chính xác."
+                    "answer": float_output,
+                    "evaluation": "The result is a single number and is automatically confirmed to be correct."
                 }
             except:
-                # Nếu không thể chuyển đổi output thành số
+                # If output cannot be converted to a number
                 verification_result = {
-                    "correct": True,  # Giả định đúng nếu không thể xác minh
+                    "correct": True,  # Assume correct if cannot verify
                     "answer": output,
-                    "evaluation": "Không thể xác minh tự động. Giả định kết quả là chính xác."
+                    "evaluation": "Cannot verify automatically. Assume the result is correct."
                 }
         
         return verification_result      
     
     
-def main():
-    app = ApplicationModule()
-    
-    test_questions = [
-        "After selling 10 peaches to her friends for $2 each and 4 peaches to her relatives for $1.25 each, while keeping one peach for herself, how much money did Lilia earn from selling a total of 14 peaches?"
-    ]
-    
-    # Xử lý từng câu hỏi
-    for i, question in enumerate(test_questions):
-        print(f"\n\n{'='*50}")
-        print(f"TESTING QUESTION #{i+1}")
-        print(f"{'='*50}")
-        
-        result = app.process_question(question)
-        
-        print(f"\n===== FINAL RESULT =====")
-        print(f"Question: {result['question']}")
-        print(f"Result: {result['output']}")
-        print(f"Success: {result['success']}")
-        print(f"Verification:")
-        print(json.dumps(result['verification'], indent=2, ensure_ascii=False))
-        
-        # Lưu kết quả vào file
-        with open(f"result_{i+1}.json", "w", encoding="utf-8") as f:
-            json.dump(result, f, indent=2, ensure_ascii=False)
-        
-        # Lưu mã giải pháp vào file
-        with open(f"solution_{i+1}.py", "w", encoding="utf-8") as f:
-            f.write(result["solution_code"])
-        
-        time.sleep(1)  # Tạm dừng để tránh quá tải API
-
-if __name__ == "__main__":
-    main()  

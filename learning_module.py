@@ -32,7 +32,6 @@ class AIModelClient:
     
     def improve_code(self, system_prompt: str, user_prompt: str,
                      code: str, error_message: str) -> str:
-        
         """Improve code based on error feedback."""
         error_prompt = f"""
         Your Python code has the following issue:
@@ -114,7 +113,6 @@ class AIModelClient:
         )
 
         try:
-            # Try to parse the response as JSON directly
             result_text = completion.choices[0].message.content.strip()
             if result_text.startswith("```json"):
                 result_text = result_text[7:]
@@ -217,14 +215,14 @@ class TrainingExampleManager:
         self.checkpoint_file = "checkpoint.json"
         self.log_file = "error_log.txt"
 
-    def create_training_examples(self, idx: int, problem: dict[str, Any], solution_code: str) -> dict[str, Any]:
+    def create_training_examples(self, id: int, problem: dict[str, Any], solution_code: str) -> dict[str, Any]:
         """Create a training example with features extracted from the problem and solution."""
         # Extract features using the AI model
         features = self.model_client.extract_problem_features(problem['question'], solution_code)
         
         # Create the training example
         example = {
-            "idx": idx,
+            "id": id,
             "question": problem['question'],
             "answer": problem['answer'],
             "modified_solution": solution_code,
@@ -244,15 +242,15 @@ class TrainingExampleManager:
         else:
             examples = []
         
-        # Add the new example or update existing one with same idx
-        idx_exists = False
+        # Add the new example or update existing one with same id
+        id_exists = False
         for i, ex in enumerate(examples):
-            if ex.get('idx') == example['idx']:
+            if ex.get('id') == example['id']:
                 examples[i] = example
-                idx_exists = True
+                id_exists = True
                 break
         
-        if not idx_exists:
+        if not id_exists:
             examples.append(example)
         
         # Save the examples to the file
@@ -261,7 +259,7 @@ class TrainingExampleManager:
         
         print(f"Training example saved to {self.output_file}")
 
-    def log_error(self, idx: int, problem: dict[str, Any], error_message: str) -> None:
+    def log_error(self, id: int, problem: dict[str, Any], error_message: str) -> None:
         """Log an error in processing a problem."""
         if os.path.exists(self.log_file):
             try:
@@ -274,7 +272,7 @@ class TrainingExampleManager:
         
         # Create error entry
         error_entry = {
-            "idx": idx,
+            "id": id,
             "question": problem['question'],
             "answer": problem.get('answer', ''),
             "error": error_message,
@@ -282,34 +280,34 @@ class TrainingExampleManager:
         }
         
         # Add or update error entry
-        idx_exists = False
+        id_exists = False
         for i, entry in enumerate(errors):
-            if entry.get('idx') == idx:
+            if entry.get('id') == id:
                 errors[i] = error_entry
-                idx_exists = True
+                id_exists = True
                 break
         
-        if not idx_exists:
+        if not id_exists:
             errors.append(error_entry)
         
         # Save errors to file
         with open(self.log_file, 'w') as f:
             json.dump(errors, f, indent=2)
         
-        print(f"Error logged for problem {idx} in {self.log_file}")
+        print(f"Error logged for problem {id} in {self.log_file}")
 
-    def save_checkpoint(self, current_idx: int, next_idx: int) -> None:
+    def save_checkpoint(self, current_id: int, next_id: int) -> None:
         """Save the current processing checkpoint."""
         checkpoint = {
-            "last_processed_idx": current_idx,
-            "next_idx": next_idx,
+            "last_processed_id": current_id,
+            "next_id": next_id,
             "timestamp": datetime.datetime.now().isoformat()
         }
         
         with open(self.checkpoint_file, 'w') as f:
             json.dump(checkpoint, f, indent=2)
         
-        print(f"Checkpoint saved: processed up to problem {current_idx}, next is {next_idx}")
+        print(f"Checkpoint saved: processed up to problem {current_id}, next is {next_id}")
     
     def load_checkpoint(self) -> tuple[int, int]:
         """Load the last processing checkpoint."""
@@ -318,10 +316,10 @@ class TrainingExampleManager:
                 with open(self.checkpoint_file, 'r') as f:
                     checkpoint = json.load(f)
                 
-                last_idx = checkpoint.get("last_processed_idx", -1)
-                next_idx = checkpoint.get("next_idx", 0)
-                print(f"Loaded checkpoint: last processed {last_idx}, next is {next_idx}")
-                return last_idx, next_idx
+                last_id = checkpoint.get("last_processed_id", -1)
+                next_id = checkpoint.get("next_id", 0)
+                print(f"Loaded checkpoint: last processed {last_id}, next is {next_id}")
+                return last_id, next_id
             except:
                 print("Failed to load checkpoint, starting from the beginning")
         
@@ -333,7 +331,7 @@ class TrainingExampleManager:
             try:
                 with open(self.log_file, 'r') as f:
                     errors = json.load(f)
-                return [entry["idx"] for entry in errors]
+                return [entry["id"] for entry in errors]
             except:
                 pass
         
@@ -347,7 +345,7 @@ class BatchProcessor:
         self.solver = solver
         self.example_manager = example_manager
         self.data_file = "data/sample_metamath.json"
-        self.max_problems = 500
+        self.max_problems = 1000
         self.retry_failed = True
         self.continue_from_checkpoint = True
     
@@ -361,7 +359,7 @@ class BatchProcessor:
         problems = self.load_problems()
         
         # Determine starting point
-        last_processed, next_idx = self.example_manager.load_checkpoint()
+        last_processed, next_id = self.example_manager.load_checkpoint()
         
         # Decide on the problems to process
         indices_to_process = []
@@ -373,11 +371,11 @@ class BatchProcessor:
             print(f"Added {len(failed_indices)} failed problems to retry")
         
         # Then, continue from the checkpoint or start from the beginning
-        if self.continue_from_checkpoint and next_idx >= 0:
-            # Add all indices from next_idx to max_problems
-            new_indices = list(range(next_idx, min(len(problems), self.max_problems)))
+        if self.continue_from_checkpoint and next_id >= 0:
+            # Add all indices from next_id to max_problems
+            new_indices = list(range(next_id, min(len(problems), self.max_problems)))
             indices_to_process.extend(new_indices)
-            print(f"Will continue from index {next_idx}, adding {len(new_indices)} problems")
+            print(f"Will continue from index {next_id}, adding {len(new_indices)} problems")
         else:
             # Start from the beginning
             indices_to_process.extend(range(min(len(problems), self.max_problems)))
@@ -385,18 +383,18 @@ class BatchProcessor:
         
         # Remove duplicates while preserving order
         seen = set()
-        indices_to_process = [idx for idx in indices_to_process if not (idx in seen or seen.add(idx))]
+        indices_to_process = [id for id in indices_to_process if not (id in seen or seen.add(id))]
         
         print(f"Processing {len(indices_to_process)} problems in total")
         
         # Process each problem
-        for i, idx in enumerate(indices_to_process):
-            if idx >= len(problems):
-                print(f"Index {idx} is out of range, skipping")
+        for i, id in enumerate(indices_to_process):
+            if id >= len(problems):
+                print(f"Index {id} is out of range, skipping")
                 continue
                 
-            problem = problems[idx]
-            print(f"\n[{i+1}/{len(indices_to_process)}] Processing problem {idx}")
+            problem = problems[id]
+            print(f"\n[{i+1}/{len(indices_to_process)}] Processing problem {id}")
             
             try:
                 # Solve the problem
@@ -404,26 +402,26 @@ class BatchProcessor:
                 success, code, message = self.solver.solve_problem(problem)
                 elapsed_time = time.time() - start_time
                 
-                print(f"Problem {idx} processed in {elapsed_time:.2f} seconds: {'Success' if success else 'Failed'}")
+                print(f"Problem {id} processed in {elapsed_time:.2f} seconds: {'Success' if success else 'Failed'}")
                 
                 if success:
                     # Create and save training example
-                    example = self.example_manager.create_training_examples(idx, problem, code)
+                    example = self.example_manager.create_training_examples(id, problem, code)
                     self.example_manager.save_training_example(example)
                 else:
                     # Log the error
-                    self.example_manager.log_error(idx, problem, message)
+                    self.example_manager.log_error(id, problem, message)
                 
                 # Save checkpoint: current index and next index to process
-                next_problem_idx = max(idx + 1, next_idx) if idx not in failed_indices else next_idx
-                self.example_manager.save_checkpoint(idx, next_problem_idx)
+                next_problem_id = max(id + 1, next_id) if id not in failed_indices else next_id
+                self.example_manager.save_checkpoint(id, next_problem_id)
                 
                 # Small delay to avoid hitting API rate limits
                 time.sleep(0.5)
                 
             except Exception as e:
-                print(f"Error processing problem {idx}: {str(e)}")
-                self.example_manager.log_error(idx, problem, str(e))
+                print(f"Error processing problem {id}: {str(e)}")
+                self.example_manager.log_error(id, problem, str(e))
                 # Don't update checkpoint on exception to allow retry
         
         print("\nBatch processing complete!")
@@ -436,26 +434,20 @@ class BatchProcessor:
             print(f"Failed indices: {failed_indices}")
 
 
-def main():
-    # Initialize AI client
-    API_KEY = os.getenv("OPENAI_API_KEY")
-    BASE_URL = "https://api.openai.com/v1"
-    MODEL_NAME = "gpt-4o-mini"
-    model_client = AIModelClient(
-        base_url=BASE_URL,
-        api_key=API_KEY,
-        model_name=MODEL_NAME
-    )
-    
-    # Create solver and example manager
-    solver = MathProblemSolver(model_client)
-    example_manager = TrainingExampleManager(model_client)
-    
-    # Create batch processor
-    processor = BatchProcessor(model_client, solver, example_manager)
-    
-    # Process the batch
-    processor.process_batch()
 
-if __name__ == "__main__":
-    main()
+# Initialize AI client
+# API_KEY = os.getenv("OPENAI_API_KEY")
+# BASE_URL = "https://api.openai.com/v1"
+# MODEL_NAME = "gpt-4o-mini"
+
+# model_client = AIModelClient(
+#     base_url=BASE_URL,
+#     api_key=API_KEY,
+#     model_name=MODEL_NAME
+# )
+
+# solver = MathProblemSolver(model_client)
+# example_manager = TrainingExampleManager(model_client)
+# processor = BatchProcessor(model_client, solver, example_manager)
+# processor.process_batch()
+
