@@ -1,0 +1,16 @@
+[
+  {
+    "id": 583,
+    "question": "A group of people pays $720 for admission tickets to an amusement park. The price of an adult ticket is $15, and a child ticket is x. There are 25 more adults than children. How many children are in the group?\nIf we know the answer to the above question is 15, what is the value of unknown variable x?",
+    "answer": "8",
+    "error": "Expected 8, but got 1\n330.0",
+    "timestamp": "2025-05-11T10:11:01.375768"
+  },
+  {
+    "id": 589,
+    "question": "The hyperbola given by the equation \\[\\frac{y^2}{9}-\\frac{x^2}{4} = 1\\]has asymptotes $y = \\pm mx,$ where $m$ is positive. Find $m.$",
+    "answer": "\\frac{3}{2}",
+    "error": "SyntaxError: Non-UTF-8 code starting with '\\xb1' in file D:\\Github\\MathLearner-GDG-Hackathon-2025\\temp_solution.py on line 7, but no encoding declared; see https://peps.python.org/pep-0263/ for details\n",
+    "timestamp": "2025-05-11T10:11:58.109206"
+  }
+]
