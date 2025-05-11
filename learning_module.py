@@ -159,7 +159,7 @@ class MathProblemSolver:
         success, message, code = self._test_and_improve(code, question, expected_answer)
         
         # Save final solution
-        save_solution(code)
+        # save_solution(code)
         
         return success, code, message
     
@@ -211,7 +211,7 @@ class TrainingExampleManager:
     
     def __init__(self, model_client: AIModelClient):
         self.model_client = model_client
-        self.output_file = "training_examples.json"
+        self.output_file = "data/training_examples.json"
         self.checkpoint_file = "checkpoint.json"
         self.log_file = "error_log.txt"
 

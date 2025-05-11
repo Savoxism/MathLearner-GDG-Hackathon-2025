@@ -60,13 +60,13 @@ def save_solution(code: str, filename: str = "final_solution.py") -> None:
     with open(filename, "w") as f:
         f.write(code)
 
-def save_training_examples(examples: list[dict[str, Any]], filename: str = "training_examples.json") -> None:
+def save_training_examples(examples: list[dict[str, Any]], filename: str = "data/training_examples.json") -> None:
     with open(filename, 'w') as f:
         json.dump(examples, f, indent=2)
     
     print(f"Training examples saved to {filename}")
 
-def load_training_examples(filename: str = "training_examples.json") -> list[dict[str, Any]]:
+def load_training_examples(filename: str = "data/training_examples.json") -> list[dict[str, Any]]:
     if os.path.exists(filename):
         with open(filename, 'r') as f:
             return json.load(f)

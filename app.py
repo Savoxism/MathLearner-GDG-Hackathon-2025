@@ -8,7 +8,7 @@ class MathSolverInterface:
         self.app = ApplicationModule()
         self.embedding_manager = EmbeddingManager()
         
-        with open("training_examples.json", "r") as f:
+        with open("./data/training_examples.json", "r") as f:
             self.training_examples = json.load(f)
 
     def find_similar_questions(self, question: str, num_results: int = 3) -> list[dict]:

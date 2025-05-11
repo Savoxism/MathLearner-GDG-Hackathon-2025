@@ -1,9 +1,0 @@
-[
-  {
-    "id": 570,
-    "question": "How many distinct $x$-intercepts does the graph of $y = (x-5)(x^2+5x+6)$ have?",
-    "answer": "3",
-    "error": "Expected 3, but got Distinct real roots: {np.float64(-3.0), 5, np.float64(-2.0)}\n3",
-    "timestamp": "2025-05-11T00:17:14.894553"
-  },
-]

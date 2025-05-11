@@ -39,7 +39,7 @@ class EmbeddingManager:
         
         return feature_text
     
-    def load_training_examples(self, file_path: str = "training_examples.json") -> list[dict[str, Any]]:
+    def load_training_examples(self, file_path: str = "./training_examples.json") -> list[dict[str, Any]]:
         """Load training examples from a JSON file."""
         try:
             with open(file_path, "r") as f:
