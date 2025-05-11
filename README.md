@@ -32,7 +32,9 @@ Mục đích huấn luyện:
 
 Quá trình huấn luyện được tối ưu bằng hàm mất mát Cross Entropy, mục tiêu là thu nhỏ sai lệch giữa chuỗi mã Python mô hình sinh ra và chuỗi mã đúng từ dữ liệu.
 
-$$\mathcal{L}_{CE}(\theta) = -\frac{1}{T} \sum_{t=1}^{T} \log P_{\theta}(y_t \mid y_{<t}, x)$$
+<!-- $$\mathcal{L}_{CE}(\theta) = -\frac{1}{T} \sum_{t=1}^{T} \log P_{\theta}(y_t \mid y_{<t}, x)$$ --> 
+
+<div align="center"><img style="background: white;" src="https://render.githubusercontent.com/render/math?math="></div>
 
 Trong đó:
 + $\theta$: Tham số của mô hình
@@ -105,7 +107,11 @@ Trong đó:
 
 Cuối cùng, loss tổng thể là:
 
-$$\mathcal{L}_{final}(\theta) = \mathcal{L}_{CE}(\theta) + \lambda \cdot \mathcal{L}_{BRIO}(\theta)$$
+
+<!-- $$\mathcal{L}_{final}(\theta) = \mathcal{L}_{CE}(\theta) + \lambda \cdot \mathcal{L}_{BRIO}(\theta)$$ --> 
+
+<div align="center"><img style="background: white;" src="https://render.githubusercontent.com/render/math?math="></div>
+
 
 Với $\lambda$ là hệ số điều chỉnh giữa loss sinh mã và loss đánh thứ hạng (thường nằm trong khoảng 0.1 đến 0.5).
 
