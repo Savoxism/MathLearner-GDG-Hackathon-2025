@@ -161,9 +161,9 @@ class EmbeddingManager:
             }
             
 # ONLY RUN THIS ONCE TO CREATE THE EMBEDDING DATABASE          
-embedding_manager = EmbeddingManager()
-examples = embedding_manager.load_training_examples()
+# embedding_manager = EmbeddingManager()
+# examples = embedding_manager.load_training_examples()
 
-if examples:
-    embedding_manager.add_examples_to_db(examples)
-    print(f"Successfully processed {len(examples)} training examples.")
+# if examples:
+#     embedding_manager.add_examples_to_db(examples)
+#     print(f"Successfully processed {len(examples)} training examples.")
