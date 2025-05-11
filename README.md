@@ -91,7 +91,7 @@ Quy trình huấn luyện như sau:
 
 4. Tính loss: Sau khi có điểm, sử dụng hàm BRIO ranking loss để tối ưu thứ tự sinh mã theo độ chính xác.
 
-$\mathcal{L}_{BRIO}(\theta) = -\frac{1}{K} \sum_{k=1}^{K} (S(y_k) - S(y^*)) \cdot \log \frac{P_{\theta}(y_k \mid x)}{P_{\theta}(y^* \mid x)}$
+$$\mathcal{L}_{BRIO}(\theta) = -\frac{1}{K} \sum_{k=1}^{K} (S(y_k) - S(y^*)) \cdot \log \frac{P_{\theta}(y_k \mid x)}{P_{\theta}(y^* \mid x)}$$
 
 Trong đó:
 
@@ -105,7 +105,7 @@ Trong đó:
 
 Cuối cùng, loss tổng thể là:
 
-$\mathcal{L}_{final}(\theta) = \mathcal{L}_{CE}(\theta) + \lambda \cdot \mathcal{L}_{BRIO}(\theta)$
+$$\mathcal{L}_{final}(\theta) = \mathcal{L}_{CE}(\theta) + \lambda \cdot \mathcal{L}_{BRIO}(\theta)$$
 
 Với $\lambda$ là hệ số điều chỉnh giữa loss sinh mã và loss đánh thứ hạng (thường nằm trong khoảng 0.1 đến 0.5).
 
@@ -113,10 +113,10 @@ Với $\lambda$ là hệ số điều chỉnh giữa loss sinh mã và loss đá
 `MathLearner` mô phỏng cách con người học giải toán: quan sát → hiểu → lưu kinh nghiệm → vận dụng cho bài mới. Hệ thống gồm hai tầng chính – Module Học (Learning Module) và Module Ứng dụng (Application Module) – được vận hành bởi mô hình `Qwen2.5‑7B‑Math‑Instruct` đã tinh chỉnh ở giai đoạn 1. Đồng thời, hệ thống tích hợp RAG (Retrieval Augmented Generation) để lấy những bài toán mẫu được cho là đồng dạng nhất với bài đoán đang được quan tâm. Điều nãy sẽ vô cùng hữu ích cho những trung tâm nhỏ vì họ có thể tiết kiệm chi phí thu thập data để huấn luyện mô hình. Hơn nữa, hệ thống này vô cùng flexible.
 
 ### 2.1 Learning Module
-+ Đầu vào: Bài toán gốc \+ lời giải gốc
++ Đầu vào: Bài toán gốc + lời giải gốc
 + Đầu ra: Lời giải đã chỉnh sửa dưới dạng mã Python + các đặc trưng của bài toán
 
-![Pipeline huấn luyện](attachments/final_finetune_pipeline.jpg)
+![Learning Model](attachments/learning_module.jpg)
 
 Quá trình của mô-đun này diễn ra như sau:
 1. **Nhận dữ liệu huấn luyện:**  
@@ -145,7 +145,7 @@ Quá trình của mô-đun này diễn ra như sau:
 + Đầu vào: bài toán mới
 + Đầu ra: Câu trả lời đã được kiểm chứng 
 
-![Pipeline huấn luyện](attachments/final_finetune_pipeline.jpg)
+![Application Module](attachments/application_module.jpg)
 
 Quá trình mô-đun này diễn ra như sau:
 1. **Nhận câu hỏi**
