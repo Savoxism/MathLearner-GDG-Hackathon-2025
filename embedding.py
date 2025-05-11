@@ -39,7 +39,7 @@ class EmbeddingManager:
         
         return feature_text
     
-    def load_training_examples(self, file_path: str = "./training_examples.json") -> list[dict[str, Any]]:
+    def load_training_examples(self, file_path: str = "data/training_examples.json") -> list[dict[str, Any]]:
         """Load training examples from a JSON file."""
         try:
             with open(file_path, "r") as f:
@@ -161,9 +161,9 @@ class EmbeddingManager:
             }
             
 # ONLY RUN THIS ONCE TO CREATE THE EMBEDDING DATABASE          
-# embedding_manager = EmbeddingManager()
-# examples = embedding_manager.load_training_examples()
+embedding_manager = EmbeddingManager()
+examples = embedding_manager.load_training_examples()
 
-# if examples:
-#     embedding_manager.add_examples_to_db(examples)
-#     print(f"Successfully processed {len(examples)} training examples.")
+if examples:
+    embedding_manager.add_examples_to_db(examples)
+    print(f"Successfully processed {len(examples)} training examples.")
