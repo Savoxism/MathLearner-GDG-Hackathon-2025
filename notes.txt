@@ -1,12 +1,12 @@
 Dataset used: MetaMaths (2021)
-Model used: GPT-4o Mini / Gemini 2.5 Flash Thinking
+Model used: GPT-4o Mini / Final Qwen2.5-7B-Math-Instruct
 
 The Learning Module
 Input: Orginal problem + Original solution
-Output: Modified solution (standardised solution + Python code + problem features)
-Receiving Examples: The process commences with the LLM being exposed to a diverse set of mathematical problems and their detailed solutions. Datasets such as MATH, which contain challenging problems with step-by-step solutions, are typically used for this purpose.   
+Output: Modified solution in Python code + problem features
+Receiving Examples: The process commences with the LLM being exposed to a diverse set of mathematical problems and their detailed solutions. Datasets such as MetaMaths, which contain challenging problems with step-by-step solutions, are typically used for this purpose.   
 
-Modified Solutions Generation and Verification: Based on the provided examples, the LLM generates modified solutions, often structured as executable programs (e.g., using a method like Parsel). A crucial aspect of this stage is verification: these generated programs are executed to confirm their correctness. If a solution fails this verification step (e.g., produces an incorrect answer or an error), the LLM is prompted to generate a revised version. This iterative refinement continues until a correct, verifiable solution is obtained.
+Modified Solutions Generation: the LLM generates modified solutions, often structured as executable programs, in our case it is python code. A crucial aspect of this stage is verification: these generated programs are executed to confirm their correctness. If a solution fails this verification step (e.g., produces an incorrect answer or an error), the LLM is prompted to generate a revised version. This iterative refinement continues until a correct, verifiable solution is obtained.
 
 Feature Generation and Storage: For each problem and its verified solution, the LLM then generates two categories of features:
 + A general description of the problem type (e.g., algebra, geometry, calculus).
@@ -15,7 +15,8 @@ Feature Generation and Storage: For each problem and its verified solution, the 
 
 The Application Module
 Input: New problem 
-Output: features of new problem
+Output: answers
+
 Receiving Questions: The LLM receives a new mathematical problem as input.
 
 Extracting Features from Problems: Analogous to the feature generation process in the Learning Module, the LLM extracts both general and step-specific features from this new problem.
@@ -24,12 +25,6 @@ Feature Matching and Answer Generation: The extracted features from the new prob
 + Successful Match: If the search identifies previously stored solutions or solution methods with similar feature vectors, these retrieved "ideas" (e.g., solution steps, relevant theorems) are combined with the original new problem statement. This augmented information is then provided as input to the LLM, which uses it to generate a solution for the new problem.
 
 + No Match: If the similarity search does not yield any sufficiently similar features or solution methods in the database, the new problem is passed directly to the LLM. In this scenario, the LLM attempts to generate a solution based solely on its pre-trained knowledge, without the benefit of retrieved information from MathLearner's specialized memory.
-
-Generation Stage
-Input: New problem + other SUCCESSFULLY RETRIEVED problems / New problem
-Output: Python code for new problem
-
-The verification step is very important: if a generated program yields an incorrect result or fails to execute, the system can identify the flaw and prompt the LLM to revise its solution. This iterative process of generation and verification encourages the LLM to produce more structured and logically sound reasoning pathways that are computationally verifiable.
 
 The Inference Pipeline
 1) Feature extraction: LLM will read the problem and extract features
