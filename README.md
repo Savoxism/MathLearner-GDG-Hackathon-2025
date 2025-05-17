@@ -2,6 +2,8 @@
 
 Hệ thống MathLearner giúp giải quyết các bài toán dựa trên các bài mẫu. Nó mô phòng quá trình học hỏi của con người
 
+Cách chạy: Lưu OpenAI API vào file .env -> Chạy learning_module.py để sinh dữ liệu -> chạy embedding.py để mã hoá dữ liệu -> chạy application_module.py để infer.
+
 ## 1. Quá Trình Tinh Chỉnh Mô Hình `Qwen2.5-Math-7B-Instruct`
 Sau đây là mô tả chi tiết toàn bộ quá trình finetuning mô hình `Qwen2.5-Math-7B-Instruct` nhằm mục đích chuyển đổi các bài toán học sang mã Python chính xác và hiệu quả, đồng thời tăng độ chính xác và tính giải thích của mô hình LLM.
 Pipeline huấn luyện gồm hai giai đoạn chính:
